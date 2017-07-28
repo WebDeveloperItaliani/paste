@@ -7,16 +7,16 @@ return [
     | Mail Driver
     |--------------------------------------------------------------------------
     |
-    | Laravel supports both SMTP and PHP's "mail" function as drivers for the
-    | sending of e-mail. You may specify which one you're using throughout
+    | Laravel supports both SMTP and PHP"s "mail" function as drivers for the
+    | sending of e-mail. You may specify which one you"re using throughout
     | your application here. By default, Laravel is setup for SMTP mail.
     |
     | Supported: "smtp", "sendmail", "mailgun", "mandrill", "ses",
     |            "sparkpost", "log", "array"
     |
     */
-
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    
+    "driver" => env("MAIL_DRIVER", "smtp"),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,8 +28,8 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    
+    "host" => env("MAIL_HOST", "smtp.mailgun.org"),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,8 +41,8 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-
-    'port' => env('MAIL_PORT', 587),
+    
+    "port" => env("MAIL_PORT", 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,10 +54,10 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+    
+    "from" => [
+        "address" => env("MAIL_FROM_ADDRESS", "hello@example.com"),
+        "name" => env("MAIL_FROM_NAME", "Example"),
     ],
 
     /*
@@ -70,8 +70,8 @@ return [
     | transport layer security protocol should provide great security.
     |
     */
-
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    
+    "encryption" => env("MAIL_ENCRYPTION", "tls"),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,10 +83,10 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */
-
-    'username' => env('MAIL_USERNAME'),
-
-    'password' => env('MAIL_PASSWORD'),
+    
+    "username" => env("MAIL_USERNAME"),
+    
+    "password" => env("MAIL_PASSWORD"),
 
     /*
     |--------------------------------------------------------------------------
@@ -98,8 +98,8 @@ return [
     | been provided here, which will work well on most of your systems.
     |
     */
-
-    'sendmail' => '/usr/sbin/sendmail -bs',
+    
+    "sendmail" => "/usr/sbin/sendmail -bs",
 
     /*
     |--------------------------------------------------------------------------
@@ -111,12 +111,12 @@ return [
     | of the emails. Or, you may simply stick with the Laravel defaults!
     |
     */
-
-    'markdown' => [
-        'theme' => 'default',
-
-        'paths' => [
-            resource_path('views/vendor/mail'),
+    
+    "markdown" => [
+        "theme" => "default",
+        
+        "paths" => [
+            resource_path("views/vendor/mail"),
         ],
     ],
 
