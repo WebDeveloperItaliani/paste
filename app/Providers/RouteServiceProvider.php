@@ -2,19 +2,19 @@
 
 namespace Wdi\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
     /**
      * This namespace is applied to your controller routes.
      *
-     * In addition, it is set as the URL generator's root namespace.
+     * In addition, it is set as the URL generator"s root namespace.
      *
      * @var string
      */
-    protected $namespace = 'Wdi\Http\Controllers';
+    protected $namespace = "Wdi\Http\Controllers";
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -51,9 +51,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
+        Route::middleware("web")
              ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->group(base_path("routes/web.php"));
     }
 
     /**
@@ -65,9 +65,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
-             ->middleware('api')
+        Route::prefix("api")
+            ->middleware("api")
              ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->group(base_path("routes/api.php"));
     }
 }

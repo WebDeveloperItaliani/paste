@@ -2,8 +2,8 @@
 
 namespace Wdi\Http\Controllers\Auth;
 
-use Wdi\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Wdi\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {
@@ -27,6 +27,6 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware("guest");
     }
 }

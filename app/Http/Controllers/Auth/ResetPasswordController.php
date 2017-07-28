@@ -2,8 +2,8 @@
 
 namespace Wdi\Http\Controllers\Auth;
 
-use Wdi\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Wdi\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {
@@ -13,7 +13,7 @@ class ResetPasswordController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
+    | and uses a simple trait to include this behavior. You"re free to
     | explore this trait and override any methods you wish to tweak.
     |
     */
@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = "/home";
 
     /**
      * Create a new controller instance.
@@ -34,6 +34,6 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware("guest");
     }
 }
