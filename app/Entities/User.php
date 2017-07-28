@@ -1,9 +1,9 @@
 <?php
 
-namespace Wdi;
+namespace Wdi\Entities;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
