@@ -22,12 +22,10 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-#services:
-#  - memcached
-#  - redis-server
+services:
+  - redis-server
 
 before_install:
-  - echo "extension = memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - printf "\n" | pecl install -f redis
   - travis_retry composer self-update
 
