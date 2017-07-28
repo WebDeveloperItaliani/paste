@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateUsersTable extends Migration
+final class CreatePastesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ final class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pastes', function (Blueprint $table) {
+            $table->bigIncrements("id");
             $table->uuid("uuid");
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->bigInteger("user_id")->nullable()->default(null);
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("SET NULL")->onUpdate("CASCADE");
+            $table->string("title");
+            $table->string("code");
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -31,6 +31,6 @@ final class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        //
     }
 }
