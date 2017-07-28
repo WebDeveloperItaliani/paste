@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 final class CreatePastesTable extends Migration
 {
@@ -13,14 +12,19 @@ final class CreatePastesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pastes', function (Blueprint $table) {
+        Schema::create("pastes", function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->uuid("uuid");
-            $table->bigInteger("user_id")->nullable()->default(null);
-            $table->foreign("user_id")->references("id")->on("users")->onDelete("SET NULL")->onUpdate("CASCADE");
-            $table->string("title");
+            $table->bigInteger("paste_id")->index()->nullable()->default(null);
+            $table->bigInteger("user_id")->index()->nullable()->default(null);
+            $table->string("file_name");
+            $table->string("extension");
             $table->string("code");
+            $table->text("description");
             $table->timestamps();
+        
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("SET NULL")->onUpdate("CASCADE");
+            $table->foreign("paste_id")->references("id")->on("pastes")->onDelete("SET NULL")->onUpdate("CASCADE");
         });
     }
     
@@ -31,6 +35,6 @@ final class CreatePastesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("pastes");
     }
 }
