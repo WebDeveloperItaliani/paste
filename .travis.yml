@@ -40,3 +40,6 @@ install:
   - if [[ $setup = 'edgy' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest; fi
 
 script: vendor/bin/phpunit
+
+notifications:
+  email: false
