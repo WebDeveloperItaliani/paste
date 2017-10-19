@@ -1,29 +1,42 @@
 language: php
 
+sudo: false
+
 php:
   - 7.1
-  - 7.2
 
 env:
   global:
     - setup=basic
+
+addons:
+  mariadb: '10.1'
+
+services:
+  - redis-server
+
+before_script:
+  - mkdir bootstrap/cache
+  - mkdir storage
+  - mkdir storage/app
+  - mkdir storage/framework
+  - mkdir storage/framework/sessions
+  - mkdir storage/framework/cache
+  - mkdir storage/framework/views
+  - chmod 777 -R storage
+  - cp .env.travis .env
+  - mysql -e 'create database wdipastes;'
+  - php artisan key:generate
 
 matrix:
   fast_finish: true
   include:
     - php: 7.1
       env: setup=stable
-    - php: 7.2
-      env: setup=edgy
-
-sudo: false
 
 cache:
   directories:
     - $HOME/.composer/cache
-
-services:
-  - redis-server
 
 before_install:
   - printf "\n" | pecl install -f redis
