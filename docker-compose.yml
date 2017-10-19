@@ -4,9 +4,9 @@ services:
     container_name: wdi_paste_database
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=paste
+      - MYSQL_DATABASE=develop
       - MYSQL_USER=root
-    image: mariadb:latest
+    image: mariadb:10.1
     ports:
       - "3306:3306"
   redis:
@@ -21,7 +21,7 @@ services:
       - redis
     environment:
       - WEB_DOCUMENT_ROOT=/app/public
-    image: laravel
+    image: 6gosrl/laravel
     ports:
       - "80:80"
     volumes:
