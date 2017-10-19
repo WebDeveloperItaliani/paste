@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    
     /*
     |--------------------------------------------------------------------------
     | Filename & Format
@@ -10,10 +10,10 @@ return [
     | The default filename (without extension) and the format (php or json)
     |
     */
-
-    'filename' => '_ide_helper',
-    'format' => 'php',
-
+    
+    "filename" => "_ide_helper",
+    "format" => "php",
+    
     /*
     |--------------------------------------------------------------------------
     | Fluent helpers
@@ -22,9 +22,9 @@ return [
     | Set to true to generate commonly used Fluent methods
     |
     */
-
-    'include_fluent' => true,
-
+    
+    "include_fluent" => true,
+    
     /*
     |--------------------------------------------------------------------------
     | Write Model Magic methods
@@ -33,9 +33,9 @@ return [
     | Set to false to disable write magic methods of model
     |
     */
-
-    'write_model_magic_where' => true,
-
+    
+    "write_model_magic_where" => true,
+    
     /*
     |--------------------------------------------------------------------------
     | Helper files to include
@@ -45,13 +45,13 @@ return [
     | -- helpers (-H) option. Extra helper files can be included.
     |
     */
-
-    'include_helpers' => true,
-
-    'helper_files' => [
-        base_path().'/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
+    
+    "include_helpers" => true,
+    
+    "helper_files" => [
+        base_path() . "/vendor/laravel/framework/src/Illuminate/Support/helpers.php",
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Model locations to include
@@ -61,11 +61,12 @@ return [
     | for models.
     |
     */
-
-    'model_locations' => [
-        'app',
+    
+    "model_locations" => [
+        "app",
     ],
-
+    
+    
     /*
     |--------------------------------------------------------------------------
     | Extra classes
@@ -74,25 +75,25 @@ return [
     | These implementations are not really extended, but called with magic functions
     |
     */
-
-    'extra' => [
-        'Eloquent' => ["Illuminate\Database\Eloquent\Builder", "Illuminate\Database\Query\Builder"],
-        'Session' => ["Illuminate\Session\Store"],
+    
+    "extra" => [
+        "Eloquent" => ["Illuminate\Database\Eloquent\Builder", "Illuminate\Database\Query\Builder"],
+        "Session" => ["Illuminate\Session\Store"],
     ],
-
-    'magic' => [
-        'Log' => [
-            'debug' => "Monolog\Logger::addDebug",
-            'info' => "Monolog\Logger::addInfo",
-            'notice' => "Monolog\Logger::addNotice",
-            'warning' => "Monolog\Logger::addWarning",
-            'error' => "Monolog\Logger::addError",
-            'critical' => "Monolog\Logger::addCritical",
-            'alert' => "Monolog\Logger::addAlert",
-            'emergency' => "Monolog\Logger::addEmergency",
+    
+    "magic" => [
+        "Log" => [
+            "debug" => "Monolog\Logger::addDebug",
+            "info" => "Monolog\Logger::addInfo",
+            "notice" => "Monolog\Logger::addNotice",
+            "warning" => "Monolog\Logger::addWarning",
+            "error" => "Monolog\Logger::addError",
+            "critical" => "Monolog\Logger::addCritical",
+            "alert" => "Monolog\Logger::addAlert",
+            "emergency" => "Monolog\Logger::addEmergency",
         ],
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Interface implementations
@@ -102,11 +103,11 @@ return [
     | are detected by the helpers, others can be listed below.
     |
     */
-
-    'interfaces' => [
-
+    
+    "interfaces" => [
+    
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Support for custom DB types
@@ -133,10 +134,10 @@ return [
     |  ),
     |
     */
-    'custom_db_types' => [
-
+    "custom_db_types" => [
+    
     ],
-
+    
     /*
      |--------------------------------------------------------------------------
      | Support for camel cased models
@@ -161,8 +162,8 @@ return [
      | Note, it is currently an all-or-nothing option.
      |
      */
-    'model_camel_case_properties' => true,
-
+    "model_camel_case_properties" => true,
+    
     /*
     |--------------------------------------------------------------------------
     | Property Casts
@@ -171,8 +172,8 @@ return [
     | Cast the given "real type" to the given "type".
     |
     */
-    'type_overrides' => [
-        'integer' => 'int',
-        'boolean' => 'bool',
+    "type_overrides" => [
+        "integer" => "int",
+        "boolean" => "bool",
     ],
 ];

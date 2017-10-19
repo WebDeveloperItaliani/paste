@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 /**
- * Class CreateLanguagesTable.
+ * Class CreateLanguagesTable
  */
 final class CreateLanguagesTable extends Migration
 {
@@ -15,13 +15,13 @@ final class CreateLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name')->unique();
+        Schema::create("languages", function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->string("name")->unique();
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -29,6 +29,6 @@ final class CreateLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists("languages");
     }
 }
