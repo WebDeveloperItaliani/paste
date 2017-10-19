@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 /**
- * Class LanguagesTableSeeder
+ * Class LanguagesTableSeeder.
  */
 final class LanguagesTableSeeder extends Seeder
 {
