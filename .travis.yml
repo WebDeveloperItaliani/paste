@@ -9,16 +9,14 @@ env:
   global:
     - setup=basic
 
-addons:
-  mariadb: '10.1'
-
 services:
+  - mysql
   - redis-server
 
 before_script:
+  - mysql -e 'create database wdipastes;'
   - chmod 777 -R storage
   - cp .env.travis .env
-  - mysql -e 'create database wdipastes;'
   - php artisan key:generate
 
 matrix:
