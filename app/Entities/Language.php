@@ -11,16 +11,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 final class Language extends Model
 {
     const TABLE_NAME = "languages";
-
+    
     /** {@inheritdoc} */
     protected $table = self::TABLE_NAME;
-
+    
     /** {@inheritdoc} */
     protected $fillable = ["name"];
-
+    
     /** {@inheritdoc} */
     protected $guarded = ["id"];
-
+    
     /**
      * On language can have many pastes related.
      *

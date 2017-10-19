@@ -19,7 +19,7 @@ final class DevEnvServiceProvider extends ServiceProvider
     public function boot()
     {
     }
-
+    
     /**
      * Register the application services.
      *
@@ -31,7 +31,7 @@ final class DevEnvServiceProvider extends ServiceProvider
             $this->app->register(DebugbarServiceProvider::class);
             $this->app->register(IdeHelperServiceProvider::class);
             $this->app->alias("Debugbar", DebugbarFacade::class);
-
+            
             $this->app->singleton(FakerGenerator::class, function () {
                 return FakerFactory::create(config("app.locale_extended"));
             });

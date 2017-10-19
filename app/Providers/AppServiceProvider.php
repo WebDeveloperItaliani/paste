@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
     }
-
+    
     /**
      * Register any application services.
      *
@@ -27,11 +27,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->setLocales();
     }
-
+    
     private function setLocales()
     {
         config("app.localed_extended");
-
+        
         setlocale(LC_TIME, config("app.localed_extended"));
         setlocale(LC_MONETARY, config("app.localed_extended"));
         Carbon::setLocale(config("app.localed_extended"));

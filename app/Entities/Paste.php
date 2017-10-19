@@ -12,23 +12,23 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 final class Paste extends Model
 {
     const TABLE_NAME = "pastes";
-
+    
     /** {@inheritdoc} */
     protected $table = self::TABLE_NAME;
-
+    
     /** {@inheritdoc} */
     protected $fillable = ["paste_id", "language_id", "file_name", "extension", "code", "description"];
-
+    
     /** {@inheritdoc} */
     protected $guarded = ["id"];
-
+    
     /** {@inheritdoc} */
     protected $casts = [
         "paste_id" => "integer",
         "user_id" => "integer",
         "language_id" => "integer",
     ];
-
+    
     /**
      * A paste may have different forks.
      *
@@ -38,7 +38,7 @@ final class Paste extends Model
     {
         return $this->hasMany(self::class);
     }
-
+    
     /**
      * A paste may be a fork of another paste.
      *
@@ -48,7 +48,7 @@ final class Paste extends Model
     {
         return $this->belongsTo(self::class);
     }
-
+    
     /**
      * A paste may have a language related.
      *

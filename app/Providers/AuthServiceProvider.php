@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         "Wdi\Model" => "Wdi\Policies\ModelPolicy",
     ];
-
+    
     /**
      * Register any authentication / authorization services.
      *
@@ -23,7 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
+        
         //
     }
 }
