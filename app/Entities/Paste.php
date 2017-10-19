@@ -3,30 +3,30 @@
 namespace Wdi\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Paste.
  */
 final class Paste extends Model
 {
-    const TABLE_NAME = 'pastes';
+    const TABLE_NAME = "pastes";
 
     /** {@inheritdoc} */
     protected $table = self::TABLE_NAME;
 
     /** {@inheritdoc} */
-    protected $fillable = ['paste_id', 'language_id', 'file_name', 'extension', 'code', 'description'];
+    protected $fillable = ["paste_id", "language_id", "file_name", "extension", "code", "description"];
 
     /** {@inheritdoc} */
-    protected $guarded = ['id'];
+    protected $guarded = ["id"];
 
     /** {@inheritdoc} */
     protected $casts = [
-        'paste_id' => 'integer',
-        'user_id' => 'integer',
-        'language_id' => 'integer',
+        "paste_id" => "integer",
+        "user_id" => "integer",
+        "language_id" => "integer",
     ];
 
     /**

@@ -2,12 +2,12 @@
 
 namespace Wdi\Providers;
 
+use Barryvdh\Debugbar\Facade as DebugbarFacade;
+use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
 use Illuminate\Support\ServiceProvider;
-use Barryvdh\Debugbar\Facade as DebugbarFacade;
-use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
-use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
 
 final class DevEnvServiceProvider extends ServiceProvider
 {
@@ -27,13 +27,13 @@ final class DevEnvServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (in_array($this->app->environment(), ['local', 'testing', 'staging', 'development', 'dev'])) {
+        if (in_array($this->app->environment(), ["local", "testing", "staging", "development", "dev"])) {
             $this->app->register(DebugbarServiceProvider::class);
             $this->app->register(IdeHelperServiceProvider::class);
-            $this->app->alias('Debugbar', DebugbarFacade::class);
+            $this->app->alias("Debugbar", DebugbarFacade::class);
 
             $this->app->singleton(FakerGenerator::class, function () {
-                return FakerFactory::create(config('app.locale_extended'));
+                return FakerFactory::create(config("app.locale_extended"));
             });
         }
     }

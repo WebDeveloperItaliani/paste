@@ -18,8 +18,8 @@ final class PastesTableSeeder extends Seeder
         factory(\Wdi\Entities\Paste::class, 10)->create();
 
         // Create forks of a single paste
-        factory(\Wdi\Entities\Paste::class, 10)->states('with-language')->create([
-            'paste_id' => \Wdi\Entities\Paste::first()->id,
+        factory(\Wdi\Entities\Paste::class, 10)->states("with-language")->create([
+            "paste_id" => \Wdi\Entities\Paste::first()->id,
         ]);
     }
 }
