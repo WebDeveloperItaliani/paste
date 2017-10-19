@@ -1,5 +1,5 @@
 {
-  "name": "WebDeveloperItaliani/paste",
+  "name": "wdi/paste",
   "description": "WDI custom pastebin, sorry no 🍝",
   "keywords": [
     "wdi",
@@ -9,16 +9,19 @@
   "license": "MIT",
   "type": "project",
   "require": {
-    "php": ">=5.6.4",
-    "laravel/framework": "5.4.*",
-    "laravel/tinker": "~1.0"
+    "php": ">=7.0.0",
+    "laravel/framework": "5.5.*",
+    "laravel/tinker": "1.0.*"
   },
   "require-dev": {
-    "barryvdh/laravel-debugbar": "^2.4",
-    "barryvdh/laravel-ide-helper": "^2.4",
-    "fzaninotto/faker": "~1.4",
+    "barryvdh/laravel-debugbar": "3.0.*",
+    "barryvdh/laravel-ide-helper": "2.4.*",
+    "bmitch/churn-php": "0.2.*",
+    "doctrine/dbal": "2.6.*",
+    "filp/whoops": "~2.0",
+    "fzaninotto/faker": "1.7.*",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~5.7"
+    "phpunit/phpunit": "6.3.*"
   },
   "autoload": {
     "classmap": [
@@ -48,6 +51,10 @@
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "php artisan optimize"
+    ],
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover"
     ]
   },
   "config": {
