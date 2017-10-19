@@ -17,8 +17,8 @@ final class CreatePastesTable extends Migration
     {
         Schema::create("pastes", function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->bigInteger("paste_id")->index()->nullable()->default(null);
-            $table->bigInteger("user_id")->index()->nullable()->default(null);
+            $table->bigInteger("paste_id")->unsigned()->index()->nullable()->default(null);
+            $table->bigInteger("user_id")->unsigned()->index()->nullable()->default(null);
             $table->string("file_name");
             $table->string("extension");
             $table->string("code");

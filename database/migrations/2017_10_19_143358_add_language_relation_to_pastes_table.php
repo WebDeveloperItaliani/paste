@@ -2,9 +2,11 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
-class AddLanguageRelationToPastesTable extends Migration
+/**
+ * Class AddLanguageRelationToPastesTable
+ */
+final class AddLanguageRelationToPastesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +16,7 @@ class AddLanguageRelationToPastesTable extends Migration
     public function up()
     {
         Schema::table("pastes", function (Blueprint $table) {
-            $table->bigInteger("language_id")->index()->nullable()->default(null);
+            $table->bigInteger("language_id")->unsigned()->index()->nullable()->default(null);
             $table->foreign("language_id")->references("id")->on("languages")->onDelete("SET NULL")->onUpdate("CASCADE");
         });
     }
@@ -27,7 +29,7 @@ class AddLanguageRelationToPastesTable extends Migration
     public function down()
     {
         Schema::table("pastes", function(Blueprint $table) {
-            $table->dropForeign("pastes_language_id_foreign");
+            $table->dropColumn("language_id");
         });
     }
 }
