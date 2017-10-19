@@ -16,7 +16,7 @@ final class AddLanguageRelationToPastesTable extends Migration
     public function up()
     {
         Schema::table("pastes", function (Blueprint $table) {
-            $table->bigInteger("language_id")->unsigned()->index()->nullable()->default(null);
+            $table->bigInteger("language_id")->after("user_id")->unsigned()->index()->nullable()->default(null);
             $table->foreign("language_id")->references("id")->on("languages")->onDelete("SET NULL")->onUpdate("CASCADE");
         });
     }
