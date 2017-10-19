@@ -3,14 +3,13 @@
 namespace Wdi\Http\Handlers;
 
 use Illuminate\View\View;
-use Wdi\Http\Controllers\Controller as BaseHandler;
 
 /**
  * Class CreatePasteHandler
  *
  * @package Wdi\Http\Handlers
  */
-final class CreatePasteHandler extends BaseHandler
+final class CreatePasteHandler extends Handler
 {
     /**
      * CreatePasteHandler constructor.
