@@ -2,10 +2,16 @@
 
 namespace Wdi\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
 
-class RouteServiceProvider extends ServiceProvider
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Route;
+
+/**
+ * Class RouteServiceProvider
+ *
+ * @package Wdi\Providers
+ */
+final class RouteServiceProvider extends ServiceProvider
 {
     /**
      * This namespace is applied to your controller routes.
@@ -36,10 +42,8 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-        
         $this->mapWebRoutes();
-        
-        //
+        $this->mapHandlerRoutes();
     }
     
     /**
@@ -49,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
+    private function mapApiRoutes()
     {
         Route::prefix("api")->middleware("api")->namespace($this->namespace)->group(base_path("routes/api.php"));
     }
@@ -61,8 +65,20 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapWebRoutes()
+    private function mapWebRoutes()
     {
         Route::middleware("web")->namespace($this->namespace)->group(base_path("routes/web.php"));
+    }
+    
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    private function mapHandlerRoutes()
+    {
+        Route::middleware("web")->group(base_path("routes/handler.php"));
     }
 }
