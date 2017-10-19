@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class ChangeCodeColumnFromStringToTextInPastesTable
+ * Class ChangeCodeColumnFromStringToTextInPastesTable.
  */
 final class ChangeCodeColumnFromStringToTextInPastesTable extends Migration
 {
@@ -15,8 +15,8 @@ final class ChangeCodeColumnFromStringToTextInPastesTable extends Migration
      */
     public function up()
     {
-        Schema::table("pastes", function (Blueprint $table) {
-            $table->text("code")->change();
+        Schema::table('pastes', function (Blueprint $table) {
+            $table->text('code')->change();
         });
     }
 }

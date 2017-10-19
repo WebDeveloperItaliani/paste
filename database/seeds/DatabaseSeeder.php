@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class DatabaseSeeder
+ * Class DatabaseSeeder.
  */
 final class DatabaseSeeder extends Seeder
 {
@@ -16,10 +16,10 @@ final class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        
+
         $this->call(LanguagesTableSeeder::class);
         $this->call(PastesTableSeeder::class);
-        
+
         Model::reguard();
     }
 }

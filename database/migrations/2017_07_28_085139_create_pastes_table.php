@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreatePastesTable
+ * Class CreatePastesTable.
  */
 final class CreatePastesTable extends Migration
 {
@@ -15,21 +15,21 @@ final class CreatePastesTable extends Migration
      */
     public function up()
     {
-        Schema::create("pastes", function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->bigInteger("paste_id")->unsigned()->index()->nullable()->default(null);
-            $table->bigInteger("user_id")->unsigned()->index()->nullable()->default(null);
-            $table->string("file_name");
-            $table->string("extension");
-            $table->string("code");
-            $table->text("description");
+        Schema::create('pastes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('paste_id')->unsigned()->index()->nullable()->default(null);
+            $table->bigInteger('user_id')->unsigned()->index()->nullable()->default(null);
+            $table->string('file_name');
+            $table->string('extension');
+            $table->string('code');
+            $table->text('description');
             $table->timestamps();
-        
-            $table->foreign("user_id")->references("id")->on("users")->onDelete("SET NULL")->onUpdate("CASCADE");
-            $table->foreign("paste_id")->references("id")->on("pastes")->onDelete("SET NULL")->onUpdate("CASCADE");
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->foreign('paste_id')->references('id')->on('pastes')->onDelete('SET NULL')->onUpdate('CASCADE');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -37,6 +37,6 @@ final class CreatePastesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("pastes");
+        Schema::dropIfExists('pastes');
     }
 }

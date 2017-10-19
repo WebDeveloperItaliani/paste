@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 /**
- * Class PastesTableSeeder
+ * Class PastesTableSeeder.
  */
 final class PastesTableSeeder extends Seeder
 {
@@ -16,10 +16,10 @@ final class PastesTableSeeder extends Seeder
     {
         // Create a bunch of anon pastes
         factory(\Wdi\Entities\Paste::class, 10)->create();
-        
+
         // Create forks of a single paste
-        factory(\Wdi\Entities\Paste::class, 10)->states("with-language")->create([
-            "paste_id" => \Wdi\Entities\Paste::first()->id,
+        factory(\Wdi\Entities\Paste::class, 10)->states('with-language')->create([
+            'paste_id' => \Wdi\Entities\Paste::first()->id,
         ]);
     }
 }
