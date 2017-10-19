@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreatePastesTable
+ */
 final class CreatePastesTable extends Migration
 {
     /**
@@ -14,7 +17,6 @@ final class CreatePastesTable extends Migration
     {
         Schema::create("pastes", function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->uuid("uuid");
             $table->bigInteger("paste_id")->index()->nullable()->default(null);
             $table->bigInteger("user_id")->index()->nullable()->default(null);
             $table->string("file_name");
