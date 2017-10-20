@@ -1,0 +1,46 @@
+<?php
+
+namespace Wdi\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+/**
+ * Class AddPasteRequest
+ *
+ * @package Wdi\Http\Requests
+ */
+final class AddPasteRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize() : bool
+    {
+        return true;
+    }
+    
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules() : array
+    {
+        return [
+            "file_name" => [
+                "required",
+                "min:3",
+            ],
+            // https://en.wikipedia.org/wiki/Filename_extension
+            "extension" => [
+                "required",
+                "min:1",
+            ],
+            "code" => [
+                "required"
+            ],
+        ];
+    }
+}
