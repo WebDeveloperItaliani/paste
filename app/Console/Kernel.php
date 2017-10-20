@@ -5,7 +5,12 @@ namespace Wdi\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-class Kernel extends ConsoleKernel
+/**
+ * Class Kernel
+ *
+ * @package Wdi\Console
+ */
+final class Kernel extends ConsoleKernel
 {
     /**
      * The Artisan commands provided by your application.

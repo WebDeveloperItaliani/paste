@@ -9,6 +9,11 @@ use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class DevEnvServiceProvider
+ *
+ * @package Wdi\Providers
+ */
 final class DevEnvServiceProvider extends ServiceProvider
 {
     /**

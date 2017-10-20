@@ -6,7 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 
-class AppServiceProvider extends ServiceProvider
+/**
+ * Class AppServiceProvider
+ *
+ * @package Wdi\Providers
+ */
+final class AppServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.

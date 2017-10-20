@@ -2,10 +2,15 @@
 
 namespace Wdi\Providers;
 
-use Illuminate\Support\Facades\Broadcast;
+use Broadcast;
 use Illuminate\Support\ServiceProvider;
 
-class BroadcastServiceProvider extends ServiceProvider
+/**
+ * Class BroadcastServiceProvider
+ *
+ * @package Wdi\Providers
+ */
+final class BroadcastServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.

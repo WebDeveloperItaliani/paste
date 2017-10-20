@@ -2,10 +2,15 @@
 
 namespace Wdi\Http\Middleware;
 
+use Auth;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+/**
+ * Class RedirectIfAuthenticated
+ *
+ * @package Wdi\Http\Middleware
+ */
+final class RedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.

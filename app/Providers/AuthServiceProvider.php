@@ -4,16 +4,15 @@ namespace Wdi\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
+/**
+ * Class AuthServiceProvider
+ *
+ * @package Wdi\Providers
+ */
+final class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * The policy mappings for the application.
-     *
-     * @var array
-     */
-    protected $policies = [
-        "Wdi\Model" => "Wdi\Policies\ModelPolicy",
-    ];
+    /** {@inheritdoc} */
+    protected $policies = [];
     
     /**
      * Register any authentication / authorization services.
@@ -23,7 +22,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        
-        //
     }
 }
