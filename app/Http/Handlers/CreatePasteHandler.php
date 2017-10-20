@@ -12,14 +12,6 @@ use Illuminate\View\View;
 final class CreatePasteHandler extends Handler
 {
     /**
-     * CreatePasteHandler constructor.
-     */
-    public function __construct()
-    {
-    
-    }
-    
-    /**
      * Display the right view to create a new paste
      *
      * @return \Illuminate\View\View
