@@ -5,6 +5,7 @@ namespace Wdi\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Route;
+use Wdi\Entities\Paste;
 
 /**
  * Class RouteServiceProvider
@@ -20,6 +21,8 @@ final class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+    
+        Route::model("paste", Paste::class);
     }
     
     /**
