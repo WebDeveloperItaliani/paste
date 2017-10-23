@@ -1,10 +1,11 @@
 <?php
 
-namespace Wdi\Http\Handlers;
+namespace Wdi\Http\Handlers\Paste;
 
 
 use Illuminate\View\View;
 use Wdi\Factories\PasteFactory;
+use Wdi\Http\Handlers\Handler;
 use Wdi\Http\Requests\AddPasteRequest;
 
 /**

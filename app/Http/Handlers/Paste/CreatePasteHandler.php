@@ -1,8 +1,9 @@
 <?php
 
-namespace Wdi\Http\Handlers;
+namespace Wdi\Http\Handlers\Paste;
 
 use Illuminate\View\View;
+use Wdi\Http\Handlers\Handler;
 
 /**
  * Class CreatePasteHandler
