@@ -22,7 +22,6 @@ final class ShowPasteHandler extends Handler
         $paste = $request->paste;
         
         
-        return view("paste.show")
-            ->with("paste", $paste);
+        return view("paste.show")->with("paste", $paste);
     }
 }

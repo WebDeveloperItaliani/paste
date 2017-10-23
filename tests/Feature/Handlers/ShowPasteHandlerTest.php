@@ -30,7 +30,7 @@ final class ShowPasteHandlerTest extends TestCase
     /** @test */
     public function it_shows_a_single_paste()
     {
-        $this->get("pastes/{$this->paste->id}")
+        $this->get("pastes/{$this->paste->slug}")
             ->assertStatus(Response::HTTP_OK)
             ->assertViewIs("paste.show")
             ->assertViewHas("paste");
