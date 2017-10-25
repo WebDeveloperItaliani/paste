@@ -10,17 +10,11 @@ services:
   - redis-server
 
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
   - mysql -e 'create database wdipastes;'
   - chmod 777 -R storage
   - cp .env.travis .env
   - php artisan key:generate
   - php artisan migrate:fresh --seed
-
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 matrix:
   fast_finish: true
@@ -41,7 +35,9 @@ install:
   - if [[ $setup = 'stable' ]]; then travis_retry composer install --dev --prefer-dist --no-interaction --no-suggest; fi
   - if [[ $setup = 'edgy' ]]; then travis_retry composer install --dev --prefer-dist --no-interaction --prefer-lowest --no-suggest; fi
 
-script: vendor/bin/phpunit
+script: vendor/bin/phpunit --log-junit="./reports/phpunit/junit.xml" --coverage-html="./reports/phpunit/coverage" --testdox-html="./reports/phpunit/testdox" --coverage-clover build/logs/clover.xml
+
+after_script: vendor/bin/test-reporter
 
 notifications:
   email: false
