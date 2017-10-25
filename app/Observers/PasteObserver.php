@@ -18,7 +18,7 @@ final class PasteObserver
      */
     public function creating(Paste $paste)
     {
-        $paste->slug = str_random();
+        $paste->slug = slugfy();
     }
     
 }
