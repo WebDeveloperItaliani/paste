@@ -52,7 +52,7 @@ final class Paste extends Model
      */
     public function forked() : BelongsTo
     {
-        return $this->belongsTo(self::class);
+        return $this->belongsTo(self::class, "paste_id", "id");
     }
     
     /**

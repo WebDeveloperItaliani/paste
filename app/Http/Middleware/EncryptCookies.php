@@ -4,6 +4,11 @@ namespace Wdi\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 
+/**
+ * Class EncryptCookies
+ *
+ * @package Wdi\Http\Middleware
+ */
 final class EncryptCookies extends BaseEncrypter
 {
     /**
