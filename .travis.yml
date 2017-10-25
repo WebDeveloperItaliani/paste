@@ -35,11 +35,13 @@ before_install:
   - travis_retry composer self-update
 
 install:
-  - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-dist --no-suggest; fi
-  - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
-  - if [[ $setup = 'edgy' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest; fi
+  - if [[ $setup = 'basic' ]]; then travis_retry composer install --dev --no-interaction --prefer-dist --no-suggest; fi
+  - if [[ $setup = 'stable' ]]; then travis_retry composer install --dev --prefer-dist --no-interaction --no-suggest; fi
+  - if [[ $setup = 'edgy' ]]; then travis_retry composer install --dev --prefer-dist --no-interaction --prefer-lowest --no-suggest; fi
 
 script: vendor/bin/phpunit
+
+after_script: ./codeclimate.sh
 
 notifications:
   email: false
