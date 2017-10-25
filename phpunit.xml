@@ -31,4 +31,8 @@
         <env name="SESSION_DRIVER" value="array" />
         <env name="MAIL_DRIVER" value="log"/>
     </php>
+
+    <logging>
+        <log type="coverage-clover" target="reports/phpunit/clover.xml"/>
+    </logging>
 </phpunit>
