@@ -53,4 +53,15 @@ final class PasteFactoryTest extends TestCase
         $this->assertDatabaseHas(Paste::TABLE_NAME, $this->stub);
     }
     
+    /** @test */
+    public function it_can_create_a_fork_of_a_given_paste()
+    {
+        $parent = factory(Paste::class)->create();
+        $fork = PasteFactory::createForkFrom($parent);
+        
+        $this->assertEquals($parent->id, $fork->paste_id);
+        $this->assertNotEquals($parent->id, $fork->id);
+        $this->assertNotEquals($parent->slug, $fork->slug);
+    }
+    
 }

@@ -17,7 +17,6 @@ final class PasteFactory implements IFactory
         $fillable = (new Paste())->getFillable();
         
         return array_only($attributes, $fillable);
-        
     }
     
     /** {@inheritdoc} */
@@ -26,5 +25,13 @@ final class PasteFactory implements IFactory
         $attributes = self::hydrate($attributes);
         
         return (new Paste())->create($attributes);
+    }
+    
+    public static function createForkFrom(Paste $paste)
+    {
+        $fork = $paste->replicate();
+        $fork->paste_id = $paste->id;
+        
+        return static::create($fork->toArray());
     }
 }
