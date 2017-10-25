@@ -16,6 +16,9 @@ before_script:
   - php artisan key:generate
   - php artisan migrate:fresh --seed
 
+after_script:
+  - vendor/bin/test-reporter
+
 matrix:
   fast_finish: true
   include:
@@ -36,8 +39,6 @@ install:
   - if [[ $setup = 'edgy' ]]; then travis_retry composer install --dev --prefer-dist --no-interaction --prefer-lowest --no-suggest; fi
 
 script: vendor/bin/phpunit --log-junit="./reports/phpunit/junit.xml" --coverage-html="./reports/phpunit/coverage" --testdox-html="./reports/phpunit/testdox" --coverage-clover build/logs/clover.xml
-
-after_script: vendor/bin/test-reporter
 
 notifications:
   email: false
