@@ -19,7 +19,6 @@ final class ShowPasteHandler extends Handler
      */
     public function __invoke(Request $request) : View
     {
-        // TODO: Add filters and load forked and forked
         $paste = $request->paste;
         
         return view("paste.show")->with("paste", $paste);

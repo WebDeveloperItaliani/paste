@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Tests\TestCase;
+use Wdi\Entities\Language;
 use Wdi\Entities\Paste;
 
 /**
@@ -15,13 +16,25 @@ use Wdi\Entities\Paste;
 final class AddPasteHandlerTest extends TestCase
 {
     use RefreshDatabase;
-
+    
+    /** @var \Wdi\Entities\Language */
+    private $language;
+    
+    /** {@inheritdoc} */
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        $this->language = factory(Language::class)->create();
+    }
+    
     /** @test */
     public function an_user_can_add_a_new_paste()
     {
         $stub = factory(Paste::class)->make();
         
         $this->post("pastes", [
+            "language_id" => $this->language->id,
             "file_name" => $stub->file_name,
             "extension" => $stub->extension,
             "code" => $stub->code,
@@ -32,6 +45,7 @@ final class AddPasteHandlerTest extends TestCase
             ->assertViewHas("paste");
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "language_id" => $this->language->id,
             "file_name" => $stub->file_name,
             "extension" => $stub->extension,
             "code" => $stub->code,
@@ -46,6 +60,7 @@ final class AddPasteHandlerTest extends TestCase
         $stub = factory(Paste::class)->make();
     
         $this->post("pastes", [
+            "language_id" => $this->language->id,
             "extension" => $stub->extension,
             "code" => $stub->code,
             "description" => $stub->description,
@@ -63,6 +78,7 @@ final class AddPasteHandlerTest extends TestCase
         ]);
         
         $this->post("pastes", [
+            "language_id" => $this->language->id,
             "file_name" => $stub->file_name,
             "extension" => $stub->extension,
             "code" => $stub->code,
@@ -79,6 +95,7 @@ final class AddPasteHandlerTest extends TestCase
         $stub = factory(Paste::class)->make();
         
         $this->post("pastes", [
+            "language_id" => $this->language->id,
             "file_name" => $stub->file_name,
             "code" => $stub->code,
             "description" => $stub->description,
@@ -94,11 +111,45 @@ final class AddPasteHandlerTest extends TestCase
         $stub = factory(Paste::class)->make();
         
         $this->post("pastes", [
+            "language_id" => $this->language->id,
             "file_name" => $stub->file_name,
             "extension" => $stub->extension,
             "description" => $stub->description,
         ])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHasErrors(["code"]);
+    }
+    
+    /** @test */
+    public function language_is_required_in_order_to_add_a_new_paste()
+    {
+        $this->withExceptionHandling();
+        $stub = factory(Paste::class)->make();
+       
+        $this->post("pastes", [
+            "file_name" => $stub->file_name,
+            "extension" => $stub->extension,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHasErrors(["language_id"]);
+    }
+    
+    /** @test */
+    public function language_must_exists_in_order_to_add_a_new_paste()
+    {
+        $this->withExceptionHandling();
+        $stub = factory(Paste::class)->make();
+        
+        $this->post("pastes", [
+            "language_id" => 237,
+            "file_name" => $stub->file_name,
+            "extension" => $stub->extension,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHasErrors(["language_id"]);
     }
 }

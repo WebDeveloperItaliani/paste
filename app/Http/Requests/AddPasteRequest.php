@@ -3,6 +3,8 @@
 namespace Wdi\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Wdi\Entities\Language;
 
 /**
  * Class AddPasteRequest
@@ -40,6 +42,10 @@ final class AddPasteRequest extends FormRequest
             ],
             "code" => [
                 "required"
+            ],
+            "language_id" => [
+                "required",
+                Rule::exists(Language::TABLE_NAME, "id")
             ],
         ];
     }
