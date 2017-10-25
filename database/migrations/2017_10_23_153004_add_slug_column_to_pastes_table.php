@@ -16,7 +16,7 @@ final class AddSlugColumnToPastesTable extends Migration
     public function up()
     {
         Schema::table("pastes", function (Blueprint $table) {
-            $table->string("slug")->unique();
+            $table->string("slug")->unique()->after("language_id");
         });
     }
     
