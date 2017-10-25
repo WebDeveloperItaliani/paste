@@ -8,6 +8,7 @@ use Wdi\Observers\PasteObserver;
 
 /**
  * Class ObserverServiceProvider
+ *
  * @package Wdi\Providers
  */
 final class ObserverServiceProvider extends ServiceProvider

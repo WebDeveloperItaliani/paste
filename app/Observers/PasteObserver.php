@@ -6,6 +6,7 @@ use Wdi\Entities\Paste;
 
 /**
  * Class PasteObserver
+ *
  * @package Wdi\Observers
  */
 final class PasteObserver
