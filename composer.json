@@ -1,6 +1,6 @@
 {
   "name": "wdi/paste",
-  "description": "WDI custom pastebin, sorry no 🍝",
+  "description": "WDI custom paste bin, sorry no 🍝",
   "keywords": [
     "wdi",
     "paste",
@@ -27,6 +27,9 @@
     "classmap": [
       "database/seeds",
       "database/factories"
+    ],
+    "files": [
+      "app/helpers.php"
     ],
     "psr-4": {
       "Wdi\\": "app/"

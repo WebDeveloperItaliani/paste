@@ -21,6 +21,12 @@ final class PasteTest extends TestCase
     }
     
     /** @test */
+    public function it_use_slug_as_route_key_name()
+    {
+        $this->assertEquals("slug", (new Paste())->getRouteKeyName());
+    }
+    
+    /** @test */
     public function it_may_have_forks_related()
     {
         $paste = factory(Paste::class)->make();

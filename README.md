@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/WebDeveloperItaliani/paste.svg?branch=master)](https://travis-ci.org/WebDeveloperItaliani/paste)
 
-wdi.community Pastebin, sorry no 🍝
+wdi.community paste bin, sorry no 🍝
 
 # Contributing
 

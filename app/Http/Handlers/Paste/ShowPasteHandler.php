@@ -8,6 +8,7 @@ use Wdi\Http\Handlers\Handler;
 
 /**
  * Class ShowPasteHandler
+ *
  * @package Wdi\Http\Handlers\Paste
  */
 final class ShowPasteHandler extends Handler
@@ -21,8 +22,6 @@ final class ShowPasteHandler extends Handler
         // TODO: Add filters and load forked and forked
         $paste = $request->paste;
         
-        
-        return view("paste.show")
-            ->with("paste", $paste);
+        return view("paste.show")->with("paste", $paste);
     }
 }
