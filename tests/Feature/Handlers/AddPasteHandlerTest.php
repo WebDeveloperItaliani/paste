@@ -30,6 +30,13 @@ final class AddPasteHandlerTest extends TestCase
             ->assertStatus(Response::HTTP_OK)
             ->assertViewIs("paste.show")
             ->assertViewHas("paste");
+        
+        $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "file_name" => $stub->file_name,
+            "extension" => $stub->extension,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ]);
     }
     
     /** @test */
