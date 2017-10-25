@@ -5,20 +5,22 @@ sudo: false
 php:
   - 7.1
 
-env:
-  global:
-    - setup=basic
-
 services:
   - mysql
   - redis-server
 
 before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
   - mysql -e 'create database wdipastes;'
   - chmod 777 -R storage
   - cp .env.travis .env
   - php artisan key:generate
   - php artisan migrate:fresh --seed
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 matrix:
   fast_finish: true
@@ -40,8 +42,6 @@ install:
   - if [[ $setup = 'edgy' ]]; then travis_retry composer install --dev --prefer-dist --no-interaction --prefer-lowest --no-suggest; fi
 
 script: vendor/bin/phpunit
-
-after_script: ./codeclimate.sh
 
 notifications:
   email: false
