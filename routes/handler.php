@@ -1,8 +1,11 @@
 <?php
 
+use Wdi\Http\Handlers\HomePageHandler;
 use Wdi\Http\Handlers\Paste\{
     AddPasteHandler, CreatePasteHandler, ForkPasteHandler, ShowPasteForksHandler, ShowPasteHandler
 };
+
+Route::get("", HomePageHandler::class)->name("home");
 
 Route::prefix("pastes")->group(function () {
     Route::get("new", CreatePasteHandler::class)->name("paste.create");
