@@ -15,7 +15,7 @@ use Wdi\Factories\PasteFactory;
 final class PasteObserverTest extends TestCase
 {
     /** @test */
-    public function foobar()
+    public function it_adds_a_slug_every_time_a_paste_is_created()
     {
         // Lazy
         $paste = PasteFactory::create(
