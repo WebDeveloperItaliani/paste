@@ -14,7 +14,7 @@ use Tests\TestCase;
 final class HomePageHandlerTest extends TestCase
 {
     /** @test */
-    public function it_displays_home_page()
+    public function it_shows_home_page()
     {
         $this->get("")
             ->assertStatus(Response::HTTP_OK)
