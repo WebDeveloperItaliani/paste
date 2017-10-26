@@ -19,6 +19,6 @@ final class CreatePasteHandler extends Handler
      */
     public function __invoke() : View
     {
-        return view("paste.new");
+        return view("paste.create");
     }
 }

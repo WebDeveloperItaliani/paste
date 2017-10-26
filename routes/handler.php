@@ -11,7 +11,7 @@ use Wdi\Http\Handlers\Paste\{
 Route::get("", HomePageHandler::class)->name("home");
 
 Route::prefix("pastes")->group(function () {
-    Route::get("new", CreatePasteHandler::class)->name("paste.create");
+    Route::get("create", CreatePasteHandler::class)->name("paste.create");
     Route::post("", AddPasteHandler::class)->name("paste.add");
     
     
