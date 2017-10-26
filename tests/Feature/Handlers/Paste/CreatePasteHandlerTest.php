@@ -18,6 +18,6 @@ final class CreatePasteHandlerTest extends TestCase
     {
         $this->get("pastes/create")
             ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs("paste.new");
+            ->assertViewIs("paste.create");
     }
 }
