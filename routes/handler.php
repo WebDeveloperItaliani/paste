@@ -1,7 +1,9 @@
 <?php
 
 use Wdi\Http\Handlers\HomePageHandler;
-use Wdi\Http\Handlers\Language\ListLanguagesHandler;
+use Wdi\Http\Handlers\Language\{
+    ListLanguagesHandler, ShowLanguageHandler
+};
 use Wdi\Http\Handlers\Paste\{
     AddPasteHandler, CreatePasteHandler, ForkPasteHandler, ShowPasteForksHandler, ShowPasteHandler
 };
@@ -22,4 +24,6 @@ Route::prefix("pastes")->group(function () {
 
 Route::prefix("languages")->group(function () {
     Route::get("", ListLanguagesHandler::class)->name("language.list");
+    
+    Route::get("{language}", ShowLanguageHandler::class)->name("language.show");
 });

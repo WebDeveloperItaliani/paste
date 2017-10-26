@@ -22,6 +22,12 @@ final class LanguageTest extends TestCase
     }
     
     /** @test */
+    public function it_has_a_name_as_route_key_name()
+    {
+        $this->assertEquals("name", (new Language())->getRouteKeyName());
+    }
+    
+    /** @test */
     public function it_may_have_pastes_related()
     {
         $language = factory(Language::class)->make();
