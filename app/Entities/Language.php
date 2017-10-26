@@ -21,6 +21,12 @@ final class Language extends Model
     /** {@inheritdoc} */
     protected $guarded = ["id"];
     
+    /** {@inheritdoc} */
+    public function getRouteKeyName()
+    {
+        return "name";
+    }
+    
     /**
      * On language can have many pastes related.
      *
