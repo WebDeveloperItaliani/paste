@@ -8,7 +8,7 @@ $factory->define(\Wdi\Entities\Paste::class, function (Faker\Generator $faker) {
         "language_id" => null,
         "file_name" => $faker->lexify(),
         "extension" => $faker->fileExtension,
-        "code" => $faker->paragraph,
+        "code" => $faker->randomHtml(7, 5),
         "description" => $faker->paragraph,
     ];
 });
