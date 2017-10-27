@@ -31,7 +31,7 @@ final class AddPasteHandlerTest extends TestCase
     /** @test */
     public function an_user_can_add_a_new_paste()
     {
-        $stub = factory(Paste::class)->make();
+        $stub = factory(Paste::class)->states("plain")->make();
         
         $this->post("pastes", [
             "language_id" => $this->language->id,
@@ -40,9 +40,8 @@ final class AddPasteHandlerTest extends TestCase
             "code" => $stub->code,
             "description" => $stub->description,
         ])
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs("paste.show")
-            ->assertViewHas("paste");
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHas("flash_notification");
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "language_id" => $this->language->id,

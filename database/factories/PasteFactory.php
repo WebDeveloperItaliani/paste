@@ -8,7 +8,7 @@ $factory->define(\Wdi\Entities\Paste::class, function (Faker\Generator $faker) {
         "language_id" => null,
         "file_name" => $faker->lexify(),
         "extension" => $faker->fileExtension,
-        "code" => $faker->paragraph,
+        "code" => $faker->randomHtml(7, 5),
         "description" => $faker->paragraph,
     ];
 });
@@ -18,6 +18,12 @@ $factory->state(\Wdi\Entities\Paste::class, "forked", function () {
         "paste_id" => function () {
             return factory(\Wdi\Entities\Paste::class)->create();
         },
+    ];
+});
+
+$factory->state(\Wdi\Entities\Paste::class, "plain", function (Faker\Generator $faker) {
+    return [
+        "code" => $faker->paragraph,
     ];
 });
 

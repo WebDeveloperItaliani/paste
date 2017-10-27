@@ -3,6 +3,7 @@
 namespace Wdi\Http\Handlers\Paste;
 
 use Illuminate\View\View;
+use Wdi\Entities\Language;
 use Wdi\Http\Handlers\Handler;
 
 /**
@@ -19,6 +20,8 @@ final class CreatePasteHandler extends Handler
      */
     public function __invoke() : View
     {
-        return view("paste.new");
+        $languages = Language::select(["id", "name"])->orderBy("name")->get();
+        
+        return view("paste.create")->with("languages", $languages);
     }
 }
