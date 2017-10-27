@@ -5,6 +5,7 @@ namespace Wdi\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+
 /**
  * Class Language.
  */
@@ -16,10 +17,15 @@ final class Language extends Model
     protected $table = self::TABLE_NAME;
     
     /** {@inheritdoc} */
-    protected $fillable = ["name"];
+    protected $fillable = ["name", "extensions"];
     
     /** {@inheritdoc} */
     protected $guarded = ["id"];
+    
+    /** {@inheritdoc} */
+    protected $casts = [
+        "extensions" => "array"
+    ];
     
     /** {@inheritdoc} */
     public function getRouteKeyName()
