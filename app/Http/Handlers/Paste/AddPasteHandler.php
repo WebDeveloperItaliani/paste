@@ -3,7 +3,7 @@
 namespace Wdi\Http\Handlers\Paste;
 
 
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use Wdi\Factories\PasteFactory;
 use Wdi\Http\Handlers\Handler;
 use Wdi\Http\Requests\AddPasteRequest;
@@ -17,12 +17,14 @@ final class AddPasteHandler extends Handler
 {
     /**
      * @param \Wdi\Http\Requests\AddPasteRequest $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(AddPasteRequest $request) : View
+    public function __invoke(AddPasteRequest $request) : RedirectResponse
     {
         $paste = PasteFactory::create($request->all());
         
-        return view("paste.show")->with("paste", $paste);
+        flash()->success("Paste creato con successo!");
+        
+        return redirect()->route("paste.show", $paste->slug);
     }
 }
