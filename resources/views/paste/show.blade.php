@@ -11,7 +11,10 @@
 
     <blockquote class="blockquote">
         <p class="mb-0">{{ $paste->description }}</p>
-        <footer class="blockquote-footer">Creato il {{ $paste->created_at }} <cite title="Linguaggio">{{ $paste->language }}</cite></footer>
+        <footer class="blockquote-footer">
+            <span>Creato il {{ $paste->created_at }} Linguaggio:</span>
+            <cite title="Linguaggio"><a href="{{ route("language.show", $paste->language->name) }}">{{ $paste->language->name }}</a></cite>
+        </footer>
     </blockquote>
 
     <div class="card">
