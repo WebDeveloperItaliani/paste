@@ -31,7 +31,7 @@ final class AddPasteHandlerTest extends TestCase
     /** @test */
     public function an_user_can_add_a_new_paste()
     {
-        $stub = factory(Paste::class)->make();
+        $stub = factory(Paste::class)->states("plain")->make();
         
         $this->post("pastes", [
             "language_id" => $this->language->id,

@@ -21,6 +21,12 @@ $factory->state(\Wdi\Entities\Paste::class, "forked", function () {
     ];
 });
 
+$factory->state(\Wdi\Entities\Paste::class, "plain", function (Faker\Generator $faker) {
+    return [
+        "code" => $faker->paragraph,
+    ];
+});
+
 $factory->state(\Wdi\Entities\Paste::class, "with-language", function () {
     return [
         "language_id" => function () {
