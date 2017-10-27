@@ -13,7 +13,7 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="paste-name">Nome</label>
-                <input type="text" class="form-control" id="paste-name" name="name" placeholder="Nome del paste">
+                <input type="text" class="form-control" id="paste-name" name="file_name" placeholder="Nome del paste">
             </div>
             <div class="form-group col-md-4">
                 <label for="paste-extension">Estensione</label>
@@ -21,8 +21,11 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="paste-language">Linguaggio</label>
-                <select name="language" id="paste-language" class="form-control">
+                <select name="language_id" id="paste-language" class="form-control">
                     <option selected aria-selected="true" disabled>Seleziona un linguaggio</option>
+                    @foreach($languages as $language)
+                        <option value="{{ $language->id }}">{{ $language->name }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
