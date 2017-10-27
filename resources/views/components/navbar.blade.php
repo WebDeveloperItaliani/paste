@@ -9,5 +9,7 @@
                 <a class="nav-link" href="{{ route("language.list") }}">Linguaggi</a>
             </li>
         </ul>
+
+        <a class="btn btn-primary" href="{{ route("paste.create") }}">Crea nuovo paste</a>
     </div>
 </nav>
