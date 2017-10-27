@@ -11,15 +11,11 @@
         {{ csrf_field() }}
 
         <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="paste-name">Nome</label>
-                <input type="text" class="form-control" id="paste-name" name="file_name" placeholder="Nome del paste">
+                <input type="text" class="form-control" id="paste-name" name="name" placeholder="Nome del paste">
             </div>
-            <div class="form-group col-md-4">
-                <label for="paste-extension">Estensione</label>
-                <input type="text" class="form-control" id="paste-extension" name="extension" placeholder=".php">
-            </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="paste-language">Linguaggio</label>
                 <select name="language_id" id="paste-language" class="form-control">
                     <option selected aria-selected="true" disabled>Seleziona un linguaggio</option>

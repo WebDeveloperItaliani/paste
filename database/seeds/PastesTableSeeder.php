@@ -15,12 +15,12 @@ final class PastesTableSeeder extends Seeder
     public function run()
     {
         // Create a bunch of anon pastes
-        factory(\Wdi\Entities\Paste::class, 100)->states("with-language")->create([
+        factory(\Wdi\Entities\Paste::class, 100)->create([
             "language_id" => \Wdi\Entities\Language::first()->id,
         ]);
 
         // Create forks of a single paste
-        factory(\Wdi\Entities\Paste::class, 10)->states("with-language")->create([
+        factory(\Wdi\Entities\Paste::class, 10)->create([
             "paste_id" => \Wdi\Entities\Paste::first()->id,
         ]);
     }

@@ -17,7 +17,7 @@ final class Paste extends Model
     protected $table = self::TABLE_NAME;
     
     /** {@inheritdoc} */
-    protected $fillable = ["paste_id", "language_id", "slug", "file_name", "extension", "code", "description"];
+    protected $fillable = ["paste_id", "language_id", "slug", "name", "code", "description"];
     
     /** {@inheritdoc} */
     protected $guarded = ["id"];

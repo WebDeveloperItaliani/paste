@@ -31,14 +31,9 @@ final class AddPasteRequest extends FormRequest
     public function rules() : array
     {
         return [
-            "file_name" => [
+            "name" => [
                 "required",
                 "min:3",
-            ],
-            // https://en.wikipedia.org/wiki/Filename_extension
-            "extension" => [
-                "required",
-                "min:1",
             ],
             "code" => [
                 "required"

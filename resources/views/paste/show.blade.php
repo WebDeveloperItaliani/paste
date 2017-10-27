@@ -7,9 +7,12 @@
 @endsection
 
 @section("container")
-    <h1 class="display-1">{{ $paste->file_name }}<small>{{ $paste->extension }}</small></h1>
+    <h1 class="display-1">{{ $paste->name }}</h1>
 
-    <p class="lead">{{ $paste->description }}</p>
+    <blockquote class="blockquote">
+        <p class="mb-0">{{ $paste->description }}</p>
+        <footer class="blockquote-footer">Creato il {{ $paste->created_at }} <cite title="Linguaggio">{{ $paste->language }}</cite></footer>
+    </blockquote>
 
     <div class="card">
         <div class="card-body p-0">

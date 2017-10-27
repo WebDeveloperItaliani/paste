@@ -27,8 +27,8 @@ final class ForkPasteHandlerTest extends TestCase
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "paste_id" => $paste->id,
-            "file_name" => $paste->file_name,
-            "extension" => $paste->extension,
+            "name" => $paste->name,
+            "description" => $paste->description,
         ]);
     }
 }

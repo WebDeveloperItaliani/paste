@@ -35,8 +35,7 @@ final class AddPasteHandlerTest extends TestCase
         
         $this->post("pastes", [
             "language_id" => $this->language->id,
-            "file_name" => $stub->file_name,
-            "extension" => $stub->extension,
+            "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
         ])
@@ -45,64 +44,45 @@ final class AddPasteHandlerTest extends TestCase
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "language_id" => $this->language->id,
-            "file_name" => $stub->file_name,
-            "extension" => $stub->extension,
+            "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
         ]);
     }
     
     /** @test */
-    public function file_name_is_required_in_order_to_add_a_new_paste()
+    public function name_is_required_in_order_to_add_a_new_paste()
     {
         $this->withExceptionHandling();
         $stub = factory(Paste::class)->make();
     
         $this->post("pastes", [
             "language_id" => $this->language->id,
-            "extension" => $stub->extension,
             "code" => $stub->code,
             "description" => $stub->description,
         ])
             ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(["file_name"]);
+            ->assertSessionHasErrors(["name"]);
     }
     
     /** @test */
-    public function file_name_must_be_at_least_3_chars_long_in_order_to_add_a_new_paste()
+    public function name_must_be_at_least_3_chars_long_in_order_to_add_a_new_paste()
     {
         $this->withExceptionHandling();
         $stub = factory(Paste::class)->make([
-            "file_name" => str_random(2)
+            "name" => str_random(2)
         ]);
         
         $this->post("pastes", [
             "language_id" => $this->language->id,
-            "file_name" => $stub->file_name,
-            "extension" => $stub->extension,
+            "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
         ])
             ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(["file_name"]);
+            ->assertSessionHasErrors(["name"]);
     }
-    
-    /** @test */
-    public function extension_is_required_in_order_to_add_a_new_paste()
-    {
-        $this->withExceptionHandling();
-        $stub = factory(Paste::class)->make();
-        
-        $this->post("pastes", [
-            "language_id" => $this->language->id,
-            "file_name" => $stub->file_name,
-            "code" => $stub->code,
-            "description" => $stub->description,
-        ])
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(["extension"]);
-    }
-    
+  
     /** @test */
     public function code_is_required_in_order_to_add_a_new_paste()
     {
@@ -111,8 +91,7 @@ final class AddPasteHandlerTest extends TestCase
         
         $this->post("pastes", [
             "language_id" => $this->language->id,
-            "file_name" => $stub->file_name,
-            "extension" => $stub->extension,
+            "name" => $stub->name,
             "description" => $stub->description,
         ])
             ->assertStatus(Response::HTTP_FOUND)
@@ -126,8 +105,7 @@ final class AddPasteHandlerTest extends TestCase
         $stub = factory(Paste::class)->make();
        
         $this->post("pastes", [
-            "file_name" => $stub->file_name,
-            "extension" => $stub->extension,
+            "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
         ])
@@ -143,8 +121,7 @@ final class AddPasteHandlerTest extends TestCase
         
         $this->post("pastes", [
             "language_id" => 237,
-            "file_name" => $stub->file_name,
-            "extension" => $stub->extension,
+            "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
         ])

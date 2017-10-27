@@ -50,7 +50,7 @@ final class PasteTest extends TestCase
     /** @test */
     public function it_may_have_language_related()
     {
-        $paste = factory(Paste::class)->states("with-language")->create();
+        $paste = factory(Paste::class)->create();
         
         $this->assertInstanceOf(Language::class, $paste->language);
     }
