@@ -6,7 +6,7 @@
     <h1 class="display-1 mb-4">Linguaggi</h1>
 
     <div class="row">
-    @foreach($languages->chunk(3) as $languagesChunk)
+    @foreach($languages->chunk(6) as $languagesChunk)
         @foreach($languagesChunk as $language)
             <div class="col-md-2">
                 <p class="lead">
