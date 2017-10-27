@@ -24,13 +24,21 @@ final class Language extends Model
     
     /** {@inheritdoc} */
     protected $casts = [
-        "extensions" => "array"
+        "extensions" => "array",
     ];
     
     /** {@inheritdoc} */
     public function getRouteKeyName()
     {
         return "name";
+    }
+    
+    /**
+     * @return string
+     */
+    public function getExtensionsToStringAttribute() : string
+    {
+        return implode(",", $this->extensions);
     }
     
     /**
