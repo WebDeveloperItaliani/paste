@@ -40,9 +40,8 @@ final class AddPasteHandlerTest extends TestCase
             "code" => $stub->code,
             "description" => $stub->description,
         ])
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs("paste.show")
-            ->assertViewHas("paste");
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHas("flash_notification");
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "language_id" => $this->language->id,
