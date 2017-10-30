@@ -13,7 +13,7 @@
             <select name="extension" id="paste-extension" class="form-control" :disabled="language == null">
                 <option selected aria-selected="true" disabled>Seleziona un'estensione</option>
                 <template v-if="language != null">
-                    <option v-for="(name, index) in language.extensions" :value="index">{{ name }}</option>
+                    <option v-for="name in language.extensions" :value="name">{{ name }}</option>
                 </template>
             </select>
         </div>
