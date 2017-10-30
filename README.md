@@ -8,23 +8,7 @@ wdi.community paste bin, sorry no 🍝
 
 ## Demo and Usage
 
-A live demo is coming soon, but you can start using it on your development machine, simply follow *how to install* guidelines
-
-## How to Install
-
-We strongly suggest you do use [Docker](https://www.docker.com/) in order to try this project with 0 effort whatsoever, if you have docker installed you can build up the necessary containers by typing `docker-compose up -d`, once done you can access into the main container by typing `docker exec -it wdi_paste bash`. Next step is configure it.
-
-## Configure Development Environment
-
-Once the containers are up and you have access to `wdi_paste` container it will be like a normal laravel installation with extra steps:
-
-- Copy `.env.example` file in `.env` file
-- Type `composer install -o`
-- Type `php artisan key:generate`
-- Type `php artisan migrate:fresh --seed`
-- If you wish to try in the browser install all the necessary npm dependencies with `npm install` and compile them with `npm run dev`
-
-Done.
+A live demo is coming soon, but you can start using it on your development machine, simply follow [how to install guidelines](CONTRIBUTING#how-to-install)
 
 ## Contributing
 
