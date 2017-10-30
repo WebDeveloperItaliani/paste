@@ -8,8 +8,8 @@ wdi.community paste bin, sorry no 🍝
 
 ## Demo and Usage
 
-A live demo is coming soon, but you can start using it on your development machine, simply follow [how to install guidelines](CONTRIBUTING#how-to-install)
+A live demo is coming soon, but you can start using it on your development machine, simply follow [how to install guidelines](CONTRIBUTING.md#how-to-install)
 
 ## Contributing
 
-Please refer to the [Contributing](CONTRIBUTING) document
+Please refer to the [Contributing](CONTRIBUTING.md) document
