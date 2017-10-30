@@ -13,7 +13,7 @@
         </footer>
     </blockquote>
 
-    <div class="card">
+    <div class="card m-5">
         <div class="card-body p-0">
             <pre class="m-0" v-pre><code>{{ $paste->code }}</code></pre>
         </div>
