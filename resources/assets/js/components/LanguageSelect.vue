@@ -21,7 +21,10 @@
 </template>
 
 <script>
-    const {Axios, _} = window;
+    const {
+        Axios: { get },
+        _: { find }
+    } = window;
 
     export default {
         name: "language-select",
@@ -34,7 +37,7 @@
         },
 
         mounted() {
-            Axios.get("/api/languages")
+            get("/api/languages")
                 .then(({data} = response) => {
                     this.languages = data.languages;
                 });
@@ -42,7 +45,7 @@
 
         methods: {
             setLanguage(e) {
-                this.language = _.find(this.languages, (lang) => {
+                this.language = find(this.languages, (lang) => {
                     return lang.id - e.target.value === 0;
                 });
             }
