@@ -44,7 +44,7 @@ final class RouteServiceProvider extends ServiceProvider
      */
     private function mapApiRoutes()
     {
-        Route::prefix("api")->middleware("api")->group(base_path("routes/api.php"));
+        Route::prefix("api")->namespace("Wdi\Http\Api")->middleware("api")->group(base_path("routes/api.php"));
     }
 
     /**
