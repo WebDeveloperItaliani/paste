@@ -17,7 +17,7 @@ final class Paste extends Model
     protected $table = self::TABLE_NAME;
     
     /** {@inheritdoc} */
-    protected $fillable = ["paste_id", "language_id", "slug", "name", "code", "description"];
+    protected $fillable = ["paste_id", "language_id", "slug", "name", "extension", "code", "description"];
     
     /** {@inheritdoc} */
     protected $guarded = ["id"];
@@ -33,6 +33,16 @@ final class Paste extends Model
     public function getRouteKeyName()
     {
         return "slug";
+    }
+    
+    /**
+     * Returns the name plus the extension
+     *
+     * @return string
+     */
+    public function getFileNameAttribute() : string
+    {
+        return "{$this->name}.{$this->extension}";
     }
     
     /**

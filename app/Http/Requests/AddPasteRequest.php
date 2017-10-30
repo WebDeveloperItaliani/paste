@@ -41,7 +41,7 @@ final class AddPasteRequest extends FormRequest
             "language_id" => [
                 "required",
                 Rule::exists(Language::TABLE_NAME, "id")
-            ],
+            ]
         ];
     }
 }

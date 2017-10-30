@@ -14,7 +14,7 @@
         @foreach($language->pastes as $paste)
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">{{ $paste->name }}</h4>
+                    <h4 class="card-title text-capitalize">{{ $paste->fileName }}</h4>
                     <p class="card-text">{{ $paste->description }}</p>
                     <a href="{{ route("paste.show", $paste->slug) }}" class="card-link">Visualizza</a>
                 </div>

@@ -8,6 +8,7 @@ $factory->define(\Wdi\Entities\Paste::class, function (Faker\Generator $faker) {
         "language_id" => function () {
             return factory(\Wdi\Entities\Language::class)->create();
         },
+        "extension" => $faker->randomElement(config("procedural.extensions")),
         "name" => $faker->lexify(),
         "code" => $faker->randomHtml(7, 5),
         "description" => $faker->paragraph,

@@ -35,6 +35,7 @@ final class AddPasteHandlerTest extends TestCase
         
         $this->post("pastes", [
             "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
             "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,

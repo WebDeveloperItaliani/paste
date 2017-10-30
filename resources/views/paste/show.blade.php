@@ -7,7 +7,7 @@
 @endsection
 
 @section("container")
-    <h1 class="display-1">{{ $paste->name }}</h1>
+    <h1 class="display-1">{{ $paste->name }}<small class="text-muted">.{{$paste->extension}}</small></h1>
 
     <blockquote class="blockquote">
         <p class="mb-0">{{ $paste->description }}</p>
