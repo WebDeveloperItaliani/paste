@@ -2,9 +2,9 @@
     <div class="form-row col-md-6">
         <div class="form-group col-md-6">
             <label for="paste-language">Linguaggio</label>
-            <select name="language_id" id="paste-language" class="form-control" v-model="language">
+            <select name="language_id" id="paste-language" class="form-control" @change="setLanguage">
                 <option selected aria-selected="true" disabled>Seleziona un linguaggio</option>
-                <option v-for="language in languages" :value="language">{{ language.name}}</option>
+                <option v-for="language in languages" :value="language.id">{{ language.name}}</option>
             </select>
         </div>
 
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    const {Axios} = window;
+    const {Axios, _} = window;
 
     export default {
         name: "language-select",
@@ -29,7 +29,7 @@
         data() {
             return {
                 languages: [],
-                language: null
+                language: null,
             }
         },
 
@@ -38,6 +38,14 @@
                 .then(({data} = response) => {
                     this.languages = data.languages;
                 });
+        },
+
+        methods: {
+            setLanguage(e) {
+                this.language = _.find(this.languages, (lang) => {
+                    return lang.id - e.target.value === 0;
+                });
+            }
         }
     }
 </script>
