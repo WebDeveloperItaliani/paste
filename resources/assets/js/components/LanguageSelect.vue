@@ -1,0 +1,43 @@
+<template>
+    <div class="form-row col-md-6">
+        <div class="form-group col-md-6">
+            <label for="paste-language">Linguaggio</label>
+            <select name="language_id" id="paste-language" class="form-control" v-model="language">
+                <option selected aria-selected="true" disabled>Seleziona un linguaggio</option>
+                <option v-for="language in languages" :value="language">{{ language.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="paste-extension">Estensione</label>
+            <select name="extension" id="paste-extension" class="form-control" :disabled="language == null">
+                <option selected aria-selected="true" disabled>Seleziona un'estensione</option>
+                <template v-if="language != null">
+                    <option v-for="(name, index) in language.extensions" :value="index">{{ name }}</option>
+                </template>
+            </select>
+        </div>
+    </div>
+</template>
+
+<script>
+    const {Axios} = window;
+
+    export default {
+        name: "language-select",
+
+        data() {
+            return {
+                languages: [],
+                language: null
+            }
+        },
+
+        mounted() {
+            Axios.get("/api/languages")
+                .then(({data} = response) => {
+                    this.languages = data.languages;
+                });
+        }
+    }
+</script>

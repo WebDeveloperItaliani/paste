@@ -8,10 +8,12 @@
     </head>
 
     <body>
-        @include("components.navbar")
-        @include("components.flash-message")
-        <div class="container">
-            @yield("container")
+        <div id="wdi">
+            @include("components.navbar")
+            @include("components.flash-message")
+            <div class="container">
+                @yield("container")
+            </div>
         </div>
 
         @include("layout.js")
