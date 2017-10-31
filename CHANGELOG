@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Base application
 - Paste creation and discovery
+- Fork logic
 - Language discovery
 - Docker compose
 - Necessary dependencies in packages.json e composer.json
