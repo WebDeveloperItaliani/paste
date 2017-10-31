@@ -46,6 +46,17 @@ final class Paste extends Model
     }
     
     /**
+     * Simple wrap to determine if a paste is a fork
+     * of another one
+     *
+     * @return bool
+     */
+    public function isAFork() : bool
+    {
+        return !is_null($this->paste_id);
+    }
+    
+    /**
      * A paste may have different forks.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -31,6 +31,25 @@ final class PasteTest extends TestCase
     }
     
     /** @test */
+    public function it_may_displays_file_name_and_extension_altogether()
+    {
+        $paste = factory(Paste::class)->make([
+            "name" => "foo",
+            "extension" => "bar",
+        ]);
+        
+        $this->assertEquals("foo.bar", $paste->fileName);
+    }
+    
+    /** @test */
+    public function it_can_tell_if_its_a_fork()
+    {
+        $paste = factory(Paste::class)->make();
+        
+        $this->assertFalse($paste->isAFork());
+    }
+    
+    /** @test */
     public function it_may_have_forks_related()
     {
         $paste = factory(Paste::class)->create();

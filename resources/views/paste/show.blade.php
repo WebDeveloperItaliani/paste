@@ -4,8 +4,9 @@
 
 @section("container")
     <h1 class="display-1">{{ $paste->name }}<small>.{{$paste->extension}}</small></h1>
-
-    <a href="{{ route("fork.create", $paste->slug) }}">Fork</a>
+    @if($paste->isAFork())
+        <p>Fork di <a href="{{ route("paste.show", $paste->forked->slug) }}">{{ $paste->forked->fileName }}</a></p>
+    @endif
 
     <blockquote class="blockquote">
         <p class="mb-0">{{ $paste->description }}</p>

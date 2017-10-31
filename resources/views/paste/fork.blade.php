@@ -3,7 +3,7 @@
 @section("title", "Wdi Paste - Crea nuovo")
 
 @section("container")
-    <h1 class="display-1">Crea nuovo Paste</h1>
+    <h1 class="display-1">Forka {{ $paste->name }}</h1>
 
     @includeWhen($errors->any(), "components.form-errors")
 
