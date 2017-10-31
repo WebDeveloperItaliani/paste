@@ -13,15 +13,15 @@
         </div>
     </div>
 
-    @if($paste->isAFork())
-        <p>Fork di <a href="{{ route("paste.show", $paste->forked->slug) }}">{{ $paste->forked->fileName }}</a></p>
-    @endif
-
     <blockquote class="blockquote">
         <p class="mb-0">{{ $paste->description }}</p>
         <footer class="blockquote-footer">
-            <span>Creato il {{ $paste->created_at }} Linguaggio:</span>
-            <cite title="Linguaggio"><a href="{{ route("language.show", $paste->language->name) }}">{{ $paste->language->name }}</a></cite>
+            <span>Creato il {{ $paste->created_at }}</span>
+            @if($paste->isAFork())
+            <span>Fork di</span>
+            <cite title="Fork di"><a href="{{ route("paste.show", $paste->forked->slug) }}">{{ $paste->forked->fileName }}</a></cite>
+            @endif
+
         </footer>
     </blockquote>
 
