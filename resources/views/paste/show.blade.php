@@ -5,6 +5,8 @@
 @section("container")
     <h1 class="display-1">{{ $paste->name }}<small>.{{$paste->extension}}</small></h1>
 
+    <a href="{{ route("fork.create", $paste->slug) }}">Fork</a>
+
     <blockquote class="blockquote">
         <p class="mb-0">{{ $paste->description }}</p>
         <footer class="blockquote-footer">

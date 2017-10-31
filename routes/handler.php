@@ -5,7 +5,7 @@ use Wdi\Http\Handlers\Language\{
     ListLanguagesHandler, ShowLanguageHandler
 };
 use Wdi\Http\Handlers\Paste\{
-    AddPasteHandler, CreatePasteHandler, ForkPasteHandler, ShowPasteForksHandler, ShowPasteHandler
+    AddForkHandler, AddPasteHandler, CreateForkHandler, CreatePasteHandler, ShowPasteForksHandler, ShowPasteHandler
 };
 
 Route::get("", HomePageHandler::class)->name("home");
@@ -17,8 +17,9 @@ Route::prefix("pastes")->group(function () {
     
     Route::prefix("{paste}")->group(function () {
         Route::get("", ShowPasteHandler::class)->name("paste.show");
+        Route::get("fork", CreateForkHandler::class)->name("fork.create");
+        Route::post("fork", AddForkHandler::class)->name("fork.add");
         Route::get("forks", ShowPasteForksHandler::class)->name("paste.forks");
-        Route::post("fork", ForkPasteHandler::class)->name("paste.fork");
     });
 });
 

@@ -27,11 +27,10 @@ final class PasteFactory implements IFactory
         return (new Paste())->create($attributes);
     }
     
-    public static function createForkFrom(Paste $paste)
+    public static function createForkFrom(array $attributes, Paste $parent)
     {
-        $fork = $paste->replicate();
-        $fork->paste_id = $paste->id;
+        $attributes["paste_id"] = $parent->id;
         
-        return static::create($fork->toArray());
+        return static::create($attributes);
     }
 }

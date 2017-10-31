@@ -13,19 +13,19 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="paste-name">Nome</label>
-                <input type="text" class="form-control" id="paste-name" name="name" placeholder="Nome del paste">
+                <input type="text" class="form-control" id="paste-name" name="name" placeholder="Nome del paste" value="{{ old("name") }}">
             </div>
             <language-select></language-select>
         </div>
 
         <div class="form-group">
             <label for="paste-description">Breve Descrizione</label>
-            <textarea class="form-control" id="paste-description" name="description" placeholder="Una breve descrizione del tuo paste"></textarea>
+            <textarea class="form-control" id="paste-description" name="description" placeholder="Una breve descrizione del tuo paste">{{ old("description") }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="paste-code">Codice</label>
-            <textarea class="form-control" id="paste-code" name="code" placeholder="Hello World;" rows="20"></textarea>
+            <textarea class="form-control" id="paste-code" name="code" placeholder="Hello World;" rows="20" v-pre>{{ old("code") }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-success">Crea</button>
