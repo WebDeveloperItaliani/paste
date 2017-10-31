@@ -30,15 +30,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->setLocales();
-    }
-    
-    private function setLocales()
-    {
-        config("app.localed_extended");
-        
-        setlocale(LC_TIME, config("app.localed_extended"));
-        setlocale(LC_MONETARY, config("app.localed_extended"));
-        Carbon::setLocale(config("app.localed_extended"));
+        setlocale(LC_ALL, config("app.locale_extended"));
+        Carbon::setLocale(config("app.locale"));
     }
 }
