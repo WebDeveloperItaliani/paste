@@ -19,7 +19,10 @@ final class ShowPasteForksHandler extends Handler
      */
     public function __invoke(Request $request) : View
     {
-        $paste = $request->paste->load("forks");
+        $paste = $request->paste;
+        $paste->load(["forks" => function ($query) {
+                $query->latest();
+        }]);
         
         return view("paste.forks")->with("paste", $paste);
     }

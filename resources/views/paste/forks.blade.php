@@ -10,7 +10,10 @@
         @foreach($paste->forks as $fork)
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-capitalize">{{ $fork->fileName }}</h4>
+                    <h4 class="card-title h5 d-flex justify-content-between">
+                        <span class="text-capitalize">{{ $fork->fileName }}</span>
+                        <small class="text-muted">{{ $fork->created_at->diffForHumans() }}</small>
+                    </h4>
                     <p class="card-text">{{ $fork->description }}</p>
                     <a href="{{ route("paste.show", $fork->slug) }}" class="card-link">Visualizza</a>
                 </div>
