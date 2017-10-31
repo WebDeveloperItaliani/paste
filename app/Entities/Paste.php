@@ -46,7 +46,7 @@ final class Paste extends Model
     }
     
     /**
-     * Simple wrap to determine if a paste is a fork
+     * Determine if a paste is a fork
      * of another one
      *
      * @return bool
@@ -54,6 +54,16 @@ final class Paste extends Model
     public function isAFork() : bool
     {
         return !is_null($this->paste_id);
+    }
+    
+    /**
+     * Determine is a paste has forks related
+     *
+     * @return bool
+     */
+    public function hasForks() : bool
+    {
+        return $this->forks->count() > 0;
     }
     
     /**

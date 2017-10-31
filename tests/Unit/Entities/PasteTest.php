@@ -50,10 +50,22 @@ final class PasteTest extends TestCase
     }
     
     /** @test */
+    public function it_can_tell_if_it_has_forks_related()
+    {
+        $paste = factory(Paste::class)->create();
+        factory(Paste::class)->states("forked")->create([
+            "paste_id" => $paste->id,
+        ]);
+        
+        $this->assertTrue($paste->hasForks());
+    }
+    
+    /** @test */
     public function it_may_have_forks_related()
     {
         $paste = factory(Paste::class)->create();
         
+        $this->assertFalse($paste->hasForks());
         $this->assertInstanceOf(Collection::class, $paste->forks);
         $this->assertContainsOnlyInstancesOf(Paste::class, $paste->forks);
     }
@@ -62,7 +74,7 @@ final class PasteTest extends TestCase
     public function it_may_have_been_forked()
     {
         $paste = factory(Paste::class)->states("forked")->create();
-
+        
         $this->assertInstanceOf(Paste::class, $paste->forked);
     }
     
