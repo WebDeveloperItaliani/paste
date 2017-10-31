@@ -3,7 +3,16 @@
 @section("title", "Wdi Paste - {$paste->name}")
 
 @section("container")
-    <h1 class="display-1">{{ $paste->name }}<small>.{{$paste->extension}}</small></h1>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="display-1">{{ $paste->name }}<small>.{{$paste->extension}}</small></h1>
+
+        <div class="btn-group" role="group" aria-label="Fork menu">
+            <a class="btn btn-primary" href="{{ route("fork.create", $paste->slug) }}">Forka</a>
+            <a class="btn btn-outline-info" href="{{ route("paste.forks", $paste->slug) }}">{{ $paste->forks->count() }}</a>
+        </div>
+    </div>
+
     @if($paste->isAFork())
         <p>Fork di <a href="{{ route("paste.show", $paste->forked->slug) }}">{{ $paste->forked->fileName }}</a></p>
     @endif

@@ -19,8 +19,8 @@ final class ShowPasteHandler extends Handler
     public function __invoke(Request $request)
     {
         $paste = $request->paste;
-        $paste->with(["language", "forks", "forked"]);
-     
+        $paste->loadMissing(["language", "forks", "forked"]);
+        
         return view("paste.show")->with("paste", $paste);
     }
 }
