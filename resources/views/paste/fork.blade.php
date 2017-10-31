@@ -1,6 +1,6 @@
 @extends("layout.base")
 
-@section("title", "Wdi Paste - Crea nuovo")
+@section("title", "Wdi Paste - Nuovo fork da {$paste->name}")
 
 @section("container")
     <h1 class="display-1">Forka {{ $paste->name }}</h1>
