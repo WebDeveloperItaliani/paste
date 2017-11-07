@@ -23,7 +23,7 @@ final class RouteServiceProvider extends ServiceProvider
         Route::model("language", Language::class);
         
         Route::bind("paste", function ($slug) {
-            return Paste::select(["id", "language_id", "paste_id", "user_id", "slug", "name", "extension", "code", "description", "created_at", "updated_at"])
+            return Paste::select(["id", "language_id", "paste_id", "user_id", "slug", "name", "extension", "code", "description", "password", "created_at", "updated_at"])
                 ->where("slug", $slug)->firstOrFail();
         });
     }
