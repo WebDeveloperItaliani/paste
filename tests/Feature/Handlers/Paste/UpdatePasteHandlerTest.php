@@ -42,11 +42,44 @@ final class UpdatePasteHandlerTest extends TestCase
         ])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertRedirect(route("paste.show", $this->paste->slug));
-    
+        
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "id" => $this->paste->id,
             "name" => "foo",
             "description" => "bar",
         ]);
+    }
+    
+    /** @test */
+    public function password_is_required_in_order_to_edit_a_paste()
+    {
+        $this->withExceptionHandling();
+        
+        $this->put("pastes/{$this->paste->slug}/edit", [
+            "name" => "foo",
+            "code" => $this->paste->code,
+            "language_id" => $this->paste->language->id,
+            "extension" => $this->paste->extension,
+            "description" => "bar",
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHasErrors(["password"]);
+    }
+    
+    /** @test */
+    public function password_must_match_in_order_to_edit_a_paste()
+    {
+        $this->withExceptionHandling();
+        
+        $this->put("pastes/{$this->paste->slug}/edit", [
+            "name" => "foo",
+            "code" => $this->paste->code,
+            "language_id" => $this->paste->language->id,
+            "extension" => $this->paste->extension,
+            "description" => "bar",
+            "password" => "barfoo"
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHasErrors(["password"]);
     }
 }
