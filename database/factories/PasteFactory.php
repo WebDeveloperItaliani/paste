@@ -28,3 +28,9 @@ $factory->state(\Wdi\Entities\Paste::class, "plain", function (Faker\Generator $
         "code" => $faker->paragraph,
     ];
 });
+
+$factory->state(\Wdi\Entities\Paste::class, "with-password", function (Faker\Generator $faker) {
+    return [
+        "password" => $faker->password,
+    ];
+});
