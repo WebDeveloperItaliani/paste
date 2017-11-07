@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <div id="wdi">
+        <div id="wdi" class="pb-5 mb-5">
             @include("components.navbar")
             @include("components.flash-message")
             <div class="container">

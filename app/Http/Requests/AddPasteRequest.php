@@ -36,12 +36,20 @@ final class AddPasteRequest extends FormRequest
                 "min:3",
             ],
             "code" => [
-                "required"
+                "required",
+            ],
+            "password" => [
+                "nullable",
+                "sometimes",
+                "confirmed",
             ],
             "language_id" => [
                 "required",
-                Rule::exists(Language::TABLE_NAME, "id")
-            ]
+                Rule::exists(Language::TABLE_NAME, "id"),
+            ],
+            "extension" => [
+                "required",
+            ],
         ];
     }
 }

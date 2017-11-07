@@ -28,6 +28,24 @@
             <textarea class="form-control" id="paste-code" name="code" placeholder="Hello World;" rows="20" v-pre>{{ old("code", $paste->code) }}</textarea>
         </div>
 
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="bd-callout bd-callout-warning">
+                    <h4 id="conveying-meaning-to-assistive-technologies">Nota sull'impostazione password</h4>
+
+                    <p>Impostando una password a questo paste sarai in grado di modificarlo in futuro. <strong>Ricorda</strong> non è possibile recuperare la password o impostarla di nuovo, perciò se te la dimentichi non sarà più possibile effettuare nessuna modifica.</p>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="paste-password">Password</label>
+                <input type="password" class="form-control" id="paste-password" name="password" placeholder="Eventuale password">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="paste-password-confirmation">Conferma password</label>
+                <input type="password" class="form-control" id="paste-password-confirmation" name="password_confirmation" placeholder="Conferma la password">
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-success">Effettua il Fork</button>
     </form>
 @endsection
