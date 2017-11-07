@@ -39,7 +39,6 @@ final class AddPasteRequest extends FormRequest
                 "required",
             ],
             "password" => [
-                "nullable",
                 "sometimes",
                 "confirmed",
             ],

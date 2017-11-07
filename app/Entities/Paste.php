@@ -52,12 +52,12 @@ final class Paste extends Model
      * Use built-in function to store the password for
      * a paste
      *
-     * @param string $value
+     * @param string|null $value
      * @return void
      */
-    public function setPasswordAttribute(string $value)
+    public function setPasswordAttribute($value)
     {
-        $this->attributes["password"] = bcrypt($value);
+        $this->attributes["password"] = !is_null($value) ? bcrypt($value) : $value;
     }
     
     /**
