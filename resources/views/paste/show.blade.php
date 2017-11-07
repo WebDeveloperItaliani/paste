@@ -7,9 +7,14 @@
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="display-1">{{ $paste->name }}<small>.{{$paste->extension}}</small></h1>
 
-        <div class="btn-group" role="group" aria-label="Fork menu">
-            <a class="btn btn-primary" href="{{ route("fork.create", $paste->slug) }}">Forka</a>
-            <a class="btn btn-outline-info" href="{{ route("paste.forks", $paste->slug) }}">{{ $paste->forks->count() }}</a>
+        <div class="btn-toolbar" role="toolbar" aria-label="Paste utility menu">
+            <div class="btn-group mr-2" role="group" aria-label="Edit paste">
+                <a class="btn btn-primary" href="{{ route("paste.edit", $paste->slug) }}">Modifica</a>
+            </div>
+            <div class="btn-group" role="group" aria-label="Fork paste">
+                <a class="btn btn-primary" href="{{ route("fork.create", $paste->slug) }}">Forka</a>
+                <a class="btn btn-outline-primary" href="{{ route("paste.forks", $paste->slug) }}">{{ $paste->forks->count() }}</a>
+            </div>
         </div>
     </div>
 
