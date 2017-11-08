@@ -16,9 +16,9 @@ final class PasswordMatch implements Rule
     
     /**
      * Create a new rule instance.
-     * @param string $password
+     * @param string|null $password
      */
-    public function __construct(string $password)
+    public function __construct($password)
     {
         $this->password = $password;
     }
