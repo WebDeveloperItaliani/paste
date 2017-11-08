@@ -39,12 +39,39 @@ final class AddPasteHandlerTest extends TestCase
             "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
+            "password" => "foobar",
+            "password_confirmation" => "foobar",
         ])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHas("flash_notification");
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ]);
+    }
+    
+    /** @test */
+    public function an_user_can_add_a_new_paste_without_password()
+    {
+        $stub = factory(Paste::class)->states("plain")->make();
+        
+        $this->post("pastes", [
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHas("flash_notification");
+        
+        $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
             "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
@@ -56,7 +83,7 @@ final class AddPasteHandlerTest extends TestCase
     {
         $this->withExceptionHandling();
         $stub = factory(Paste::class)->make();
-    
+        
         $this->post("pastes", [
             "language_id" => $this->language->id,
             "code" => $stub->code,
@@ -71,7 +98,7 @@ final class AddPasteHandlerTest extends TestCase
     {
         $this->withExceptionHandling();
         $stub = factory(Paste::class)->make([
-            "name" => str_random(2)
+            "name" => str_random(2),
         ]);
         
         $this->post("pastes", [
@@ -83,7 +110,7 @@ final class AddPasteHandlerTest extends TestCase
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHasErrors(["name"]);
     }
-  
+    
     /** @test */
     public function code_is_required_in_order_to_add_a_new_paste()
     {
@@ -104,7 +131,7 @@ final class AddPasteHandlerTest extends TestCase
     {
         $this->withExceptionHandling();
         $stub = factory(Paste::class)->make();
-       
+        
         $this->post("pastes", [
             "name" => $stub->name,
             "code" => $stub->code,
@@ -128,5 +155,23 @@ final class AddPasteHandlerTest extends TestCase
         ])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHasErrors(["language_id"]);
+    }
+    
+    /** @test */
+    public function password_must_be_confirmed_in_order_to_add_a_new_paste()
+    {
+        $this->withExceptionHandling();
+        $stub = factory(Paste::class)->make();
+        
+        $this->post("pastes", [
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+            "password" => "foobar",
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHasErrors(["password"]);
     }
 }

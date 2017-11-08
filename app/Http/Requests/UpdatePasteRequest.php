@@ -5,13 +5,13 @@ namespace Wdi\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Wdi\Entities\Language;
+use Wdi\Rules\PasswordMatch;
 
 /**
- * Class AddPasteRequest
- *
+ * Class UpdatePasteRequest
  * @package Wdi\Http\Requests
  */
-final class AddPasteRequest extends FormRequest
+final class UpdatePasteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -39,8 +39,8 @@ final class AddPasteRequest extends FormRequest
                 "required",
             ],
             "password" => [
-                "sometimes",
-                "confirmed",
+                "required",
+                new PasswordMatch($this->paste->password),
             ],
             "language_id" => [
                 "required",

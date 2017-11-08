@@ -42,6 +42,27 @@ final class PasteTest extends TestCase
     }
     
     /** @test */
+    public function it_may_have_a_password_for_editing_purpose()
+    {
+        $paste = factory(Paste::class)->states("with-password")->make([
+            "password" => "foobar"
+        ]);
+        
+        $this->assertNotNull($paste->password);
+        $this->assertHash("foobar", $paste->password);
+    }
+    
+    /** @test */
+    public function it_may_have_a_null_password()
+    {
+        $paste = factory(Paste::class)->make([
+            "password" => null
+        ]);
+        
+        $this->assertNull($paste->password);
+    }
+    
+    /** @test */
     public function it_can_tell_if_its_a_fork()
     {
         $paste = factory(Paste::class)->make();

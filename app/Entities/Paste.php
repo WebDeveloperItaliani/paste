@@ -17,10 +17,13 @@ final class Paste extends Model
     protected $table = self::TABLE_NAME;
     
     /** {@inheritdoc} */
-    protected $fillable = ["paste_id", "language_id", "slug", "name", "extension", "code", "description"];
+    protected $fillable = ["paste_id", "language_id", "slug", "name", "extension", "code", "description", "password"];
     
     /** {@inheritdoc} */
     protected $guarded = ["id"];
+    
+    /** {@inheritdoc} */
+    protected $hidden = ["password"];
     
     /** {@inheritdoc} */
     protected $casts = [
@@ -43,6 +46,18 @@ final class Paste extends Model
     public function getFileNameAttribute() : string
     {
         return "{$this->name}.{$this->extension}";
+    }
+    
+    /**
+     * Use built-in function to store the password for
+     * a paste
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes["password"] = !is_null($value) ? bcrypt($value) : $value;
     }
     
     /**

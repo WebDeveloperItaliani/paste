@@ -42,6 +42,8 @@ final class AddForkHandlerTest extends TestCase
             "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
+            "password" => "foobar",
+            "password_confirmation" => "foobar",
         ])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHas("flash_notification");
@@ -49,6 +51,32 @@ final class AddForkHandlerTest extends TestCase
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "paste_id" => $this->paste->id,
             "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ]);
+    }
+    
+    /** @test */
+    public function an_user_can_fork_a_new_paste_without_password()
+    {
+        $stub = factory(Paste::class)->states("plain")->make();
+        
+        $this->post("pastes/{$this->paste->slug}/fork", [
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHas("flash_notification");
+        
+        $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "paste_id" => $this->paste->id,
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
             "name" => $stub->name,
             "code" => $stub->code,
             "description" => $stub->description,
@@ -75,7 +103,7 @@ final class AddForkHandlerTest extends TestCase
     {
         $this->withExceptionHandling();
         $stub = factory(Paste::class)->make([
-            "name" => str_random(2)
+            "name" => str_random(2),
         ]);
         
         $this->post("pastes/{$this->paste->slug}/fork", [
@@ -132,5 +160,23 @@ final class AddForkHandlerTest extends TestCase
         ])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHasErrors(["language_id"]);
+    }
+    
+    /** @test */
+    public function password_must_be_confirmed_in_order_to_fork_a_paste()
+    {
+        $this->withExceptionHandling();
+        $stub = factory(Paste::class)->make();
+    
+        $this->post("pastes/{$this->paste->slug}/fork", [
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+            "password" => "foobar",
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHasErrors(["password"]);
     }
 }

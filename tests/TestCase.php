@@ -23,4 +23,18 @@ abstract class TestCase extends BaseTestCase
         
         $this->withoutExceptionHandling();
     }
+    
+    /**
+     * Handy function to determine the hash status
+     * between plain text and hashed string
+     * 
+     * @param string $plain
+     * @param string $hashed
+     */
+    public function assertHash(string $plain, string $hashed)
+    {
+        static::assertTrue(
+            app("hash")->check($plain, $hashed)
+        );
+    }
 }
