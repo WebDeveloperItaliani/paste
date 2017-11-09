@@ -10,7 +10,7 @@ services:
   - redis-server
 
 before_script:
-  - mysql -e 'create database wdipastes;'
+  - mysql -e 'create database wdipaste;'
   - chmod 777 -R storage
   - cp .env.travis .env
   - php artisan key:generate
