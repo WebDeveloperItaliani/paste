@@ -17,7 +17,7 @@ return [
     "facebook" => [
         'client_id' => env("FB_CLIENT_ID"),
         'client_secret' => env("FB_CLIENT_SECRET"),
-        'redirect' => env("FB_CALLBACK_URL"),
+        'redirect' => env("APP_URL") . "/auth/login/facebook/redirect",
     ],
 
 ];
