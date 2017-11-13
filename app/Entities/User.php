@@ -23,6 +23,9 @@ final class User extends Authenticatable
     /** {@inheritdoc} */
     protected $guarded = ["id"];
     
+    /** {@inheritdoc} */
+    protected $hidden = ["remember_token"];
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
