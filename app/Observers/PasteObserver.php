@@ -20,7 +20,9 @@ final class PasteObserver
      */
     public function creating(Paste $paste)
     {
-        $paste->user_id = Auth::id();
+        if (Auth::check()) {
+            $paste->user_id = Auth::id();
+        }
         $paste->slug = slugfy();
     }
     
