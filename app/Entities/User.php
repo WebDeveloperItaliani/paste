@@ -27,6 +27,26 @@ final class User extends Authenticatable
     protected $hidden = ["remember_token"];
     
     /**
+     * Determine is a user has pastes related
+     *
+     * @return bool
+     */
+    public function hasPastes() : bool
+    {
+        return $this->pastes->count() > 0;
+    }
+    
+    /**
+     * On user can have many pastes related.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pastes() : HasMany
+    {
+        return $this->hasMany(Paste::class);
+    }
+    
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function socialProfiles() : HasMany

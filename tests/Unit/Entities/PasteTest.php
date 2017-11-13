@@ -95,8 +95,9 @@ final class PasteTest extends TestCase
     /** @test */
     public function it_may_belongs_to_an_user()
     {
-        $paste = factory(Paste::class)->states("with-user")->create();
+        $paste = factory(Paste::class)->states("with-user")->make();
         
+        $this->assertTrue($paste->hasUser());
         $this->assertInstanceOf(User::class, $paste->user);
     }
     

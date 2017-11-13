@@ -17,6 +17,10 @@ final class UserSocial extends Model
     protected $table = self::TABLE_NAME;
     
     /** {@inheritdoc} */
+    protected $fillable = ["user_id", "social_id", "provider", "oauth_token", "oauth_secret", "oauth_refresh",
+        "expires_in", "email", "nickname", "name", "avatar"];
+    
+    /** {@inheritdoc} */
     protected $guarded = ["id"];
     
     /**
