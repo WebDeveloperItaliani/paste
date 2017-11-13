@@ -8,8 +8,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route("language.list") }}">Linguaggi</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route("paste.create") }}">Crea nuovo paste</a>
+            </li>
         </ul>
 
-        <a class="btn btn-primary" href="{{ route("paste.create") }}">Crea nuovo paste</a>
+        @auth
+            <a href="#coming-soon" class="btn btn-primary">Dashboard</a>
+            <a href="{{ route("auth.logout") }}" class="btn btn-secondary">Esci</a>
+        @endauth
+
+        @guest
+            <a href="{{ route("social.login", "facebook")  }}" class="btn btn-primary">Accedi</a>
+        @endguest
     </div>
 </nav>
