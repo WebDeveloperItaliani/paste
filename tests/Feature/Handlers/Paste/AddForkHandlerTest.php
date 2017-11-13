@@ -50,6 +50,37 @@ final class AddForkHandlerTest extends TestCase
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "paste_id" => $this->paste->id,
+            "user_id" => null,
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ]);
+    }
+    
+    /** @test */
+    public function a_logged_user_will_have_the_fork_related()
+    {
+        $this->login();
+    
+        $stub = factory(Paste::class)->states("plain")->make();
+    
+        $this->post("pastes/{$this->paste->slug}/fork", [
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+            "password" => "foobar",
+            "password_confirmation" => "foobar",
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHas("flash_notification");
+    
+        $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "paste_id" => $this->paste->id,
+            "user_id" => $this->loggedUser->id,
             "language_id" => $this->language->id,
             "extension" => $this->language->extensions[1],
             "name" => $stub->name,
@@ -75,6 +106,7 @@ final class AddForkHandlerTest extends TestCase
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
             "paste_id" => $this->paste->id,
+            "user_id" => null,
             "language_id" => $this->language->id,
             "extension" => $this->language->extensions[1],
             "name" => $stub->name,

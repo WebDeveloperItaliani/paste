@@ -20,14 +20,6 @@ final class AddPasteHandlerTest extends TestCase
     /** @var \Wdi\Entities\Language */
     private $language;
     
-    /** {@inheritdoc} */
-    protected function setUp()
-    {
-        parent::setUp();
-        
-        $this->language = factory(Language::class)->create();
-    }
-    
     /** @test */
     public function an_user_can_add_a_new_paste()
     {
@@ -46,6 +38,36 @@ final class AddPasteHandlerTest extends TestCase
             ->assertSessionHas("flash_notification");
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "user_id" => null,
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+        ]);
+    }
+    
+    /** @test */
+    public function a_logged_user_will_have_a_paste_related()
+    {
+        $this->login();
+        
+        $stub = factory(Paste::class)->states("plain")->make();
+        
+        $this->post("pastes", [
+            "language_id" => $this->language->id,
+            "extension" => $this->language->extensions[1],
+            "name" => $stub->name,
+            "code" => $stub->code,
+            "description" => $stub->description,
+            "password" => "foobar",
+            "password_confirmation" => "foobar",
+        ])
+            ->assertStatus(Response::HTTP_FOUND)
+            ->assertSessionHas("flash_notification");
+        
+        $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "user_id" => $this->loggedUser->id,
             "language_id" => $this->language->id,
             "extension" => $this->language->extensions[1],
             "name" => $stub->name,
@@ -70,6 +92,7 @@ final class AddPasteHandlerTest extends TestCase
             ->assertSessionHas("flash_notification");
         
         $this->assertDatabaseHas(Paste::TABLE_NAME, [
+            "user_id" => null,
             "language_id" => $this->language->id,
             "extension" => $this->language->extensions[1],
             "name" => $stub->name,
@@ -173,5 +196,13 @@ final class AddPasteHandlerTest extends TestCase
         ])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHasErrors(["password"]);
+    }
+    
+    /** {@inheritdoc} */
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        $this->language = factory(Language::class)->create();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Wdi\Observers;
 
+use Auth;
 use Wdi\Entities\Paste;
 
 /**
@@ -19,6 +20,7 @@ final class PasteObserver
      */
     public function creating(Paste $paste)
     {
+        $paste->user_id = Auth::id();
         $paste->slug = slugfy();
     }
     
