@@ -21,9 +21,13 @@
     <blockquote class="blockquote">
         <p class="mb-0">{{ $paste->description }}</p>
         <footer class="blockquote-footer">
-            <span>Creato il {{ $paste->created_at }}</span>
+            <span>Creato {{ $paste->created_at->diffForHumans() }}</span>
+            @if($paste->hasUser())
+            <span>da </span>
+            <cite title="Creato da">{{ $paste->user->facebookProfile->name }}</cite>
+            @endif
             @if($paste->isAFork())
-            <span>Fork di</span>
+            <span>fork di</span>
             <cite title="Fork di"><a href="{{ route("paste.show", $paste->forked->slug) }}">{{ $paste->forked->fileName }}</a></cite>
             @endif
 
