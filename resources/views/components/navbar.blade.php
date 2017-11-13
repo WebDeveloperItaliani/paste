@@ -13,13 +13,20 @@
             </li>
         </ul>
 
+        <ul class="navbar-nav">
         @auth
-            <a href="#coming-soon" class="btn btn-primary">Dashboard</a>
-            <a href="{{ route("auth.logout") }}" class="btn btn-secondary">Esci</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#coming-soon">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route("auth.logout") }}">Esci</a>
+            </li>
         @endauth
-
         @guest
-            <a href="{{ route("social.login", "facebook")  }}" class="btn btn-primary">Accedi</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route("social.login", "facebook") }}">Accedi</a>
+            </li>
         @endguest
+        </ul>
     </div>
 </nav>
