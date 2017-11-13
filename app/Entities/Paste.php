@@ -17,7 +17,7 @@ final class Paste extends Model
     protected $table = self::TABLE_NAME;
     
     /** {@inheritdoc} */
-    protected $fillable = ["paste_id", "language_id", "slug", "name", "extension", "code", "description", "password"];
+    protected $fillable = ["user_id", "paste_id", "language_id", "slug", "name", "extension", "code", "description", "password"];
     
     /** {@inheritdoc} */
     protected $guarded = ["id"];
@@ -79,6 +79,26 @@ final class Paste extends Model
     public function hasForks() : bool
     {
         return $this->forks->count() > 0;
+    }
+    
+    /**
+     * Determine is a paste has an user related
+     *
+     * @return bool
+     */
+    public function hasUser() : bool
+    {
+        return !is_null($this->user_id);
+    }
+    
+    /**
+     * A paste may have an user related
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
     
     /**
