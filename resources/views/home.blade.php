@@ -12,6 +12,4 @@
             <a class="btn btn-lg btn-outline-primary" href="{{ route("paste.create") }}">Crea nuovo Paste</a>
         </div>
     </main>
-
-    <a href="{{ route("social.login", "facebook")  }}" class="btn btn-primary">Login with Facebook</a>
 @endsection
