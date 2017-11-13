@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * Class CreateUsersSocialTable
+ * Class CreateUsersSocialsTable
  */
-final class CreateUsersSocialTable extends Migration
+final class CreateUsersSocialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,10 @@ final class CreateUsersSocialTable extends Migration
      */
     public function up()
     {
-        Schema::create("users_social", function (Blueprint $table) {
+        Schema::create("users_socials", function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("provider")->index();
-            $table->unsignedBigInteger("user_id")->index();
+            $table->unsignedBigInteger("user_id")->index()->nullable();
             
             $table->string("oauth_token");
             $table->string("oauth_secret")->nullable();
@@ -43,6 +43,6 @@ final class CreateUsersSocialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("users_social");
+        Schema::dropIfExists("users_socials");
     }
 }
