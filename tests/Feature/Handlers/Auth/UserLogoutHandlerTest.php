@@ -9,6 +9,7 @@ use Tests\TestCase;
 
 /**
  * Class UserLogoutHandlerTest
+ * @group Auth
  * @package Tests\Feature
  */
 final class UserLogoutHandlerTest extends TestCase
@@ -28,13 +29,20 @@ final class UserLogoutHandlerTest extends TestCase
     }
     
     /** @test */
-    public function a_guest_user_cannot_perform_logout()
+    public function an_exception_will_raise_if_a_guest_tries_to_logout()
     {
         $this->expectException(AuthenticationException::class);
         
+        $this->get("auth/logout");
+    }
+    
+    /** @test */
+    public function a_guest_will_be_redirect_home_if_tries_to_logout()
+    {
+        $this->withExceptionHandling();
+        
         $this->get("auth/logout")
             ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHas("flash_message")
             ->assertRedirect("/");
     }
 }

@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
     {
         flash()->error("Non sei autenticato");
         
-        return redirect()->guest(route("home"));
+        return redirect()->route("home");
     }
     
 }
