@@ -18,7 +18,7 @@ use Illuminate\Session\Middleware\{
 };
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Wdi\Http\Middleware\{
-    EncryptCookies, RedirectIfAuthenticated, TrimStrings, VerifyCsrfToken
+    EncryptCookies, RedirectIfAuthenticated, TrimStrings, TrustProxies, VerifyCsrfToken
 };
 
 /**
@@ -61,6 +61,7 @@ final class Kernel extends HttpKernel
         "bindings" => SubstituteBindings::class,
         "can" => Authorize::class,
         "guest" => RedirectIfAuthenticated::class,
+        "proxies" => TrustProxies::class,
         "throttle" => ThrottleRequests::class,
     ];
 }
