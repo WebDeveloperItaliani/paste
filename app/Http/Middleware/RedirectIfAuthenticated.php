@@ -22,6 +22,8 @@ final class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            flash()->warning("Sei già loggato");
+            
             return redirect()->route("home");
         }
         

@@ -8,6 +8,7 @@ use Socialite;
 use Wdi\Entities\User;
 use Wdi\Entities\UserSocial;
 use Wdi\Http\Handlers\Handler;
+use Wdi\Http\Middleware\RedirectIfAuthenticated;
 
 /**
  * Class SocialRedirectHandler
@@ -15,6 +16,14 @@ use Wdi\Http\Handlers\Handler;
  */
 final class SocialRedirectHandler extends Handler
 {
+    /**
+     * SocialLoginHandler constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware(RedirectIfAuthenticated::class);
+    }
+    
     public function __invoke(Request $request, $provider)
     {
         $userProvider = Socialite::driver($provider)->user();
