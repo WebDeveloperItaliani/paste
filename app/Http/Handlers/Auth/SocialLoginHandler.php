@@ -1,13 +1,14 @@
 <?php
 
-namespace Wdi\Http\Handlers;
+namespace Wdi\Http\Handlers\Auth;
 
 use Illuminate\Http\Request;
 use Socialite;
+use Wdi\Http\Handlers\Handler;
 
 /**
  * Class SocialLoginHandler
- * @package Wdi\Http\Handlers
+ * @package Wdi\Http\Handlers\Auth
  */
 final class SocialLoginHandler extends Handler
 {

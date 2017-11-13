@@ -1,5 +1,8 @@
 <?php
 
+use Wdi\Http\Handlers\Auth\{
+    SocialLoginHandler, SocialRedirectHandler, UserLogoutHandler
+};
 use Wdi\Http\Handlers\HomePageHandler;
 use Wdi\Http\Handlers\Language\{
     ListLanguagesHandler, ShowLanguageHandler
@@ -7,23 +10,21 @@ use Wdi\Http\Handlers\Language\{
 use Wdi\Http\Handlers\Paste\{
     AddForkHandler, AddPasteHandler, CreateForkHandler, CreatePasteHandler, EditPasteHandler, ShowPasteForksHandler, ShowPasteHandler, UpdatePasteHandler
 };
-use Wdi\Http\Handlers\SocialLoginHandler;
-use Wdi\Http\Handlers\SocialRedirectHandler;
 
 Route::get("", HomePageHandler::class)->name("home");
 
-Route::prefix("auth")->group(function() {
+Route::prefix("auth")->group(function () {
     
-    Route::prefix("login")->group(function() {
+    Route::prefix("login")->group(function () {
         
-        Route::prefix("{provider}")->group(function() {
+        Route::prefix("{provider}")->group(function () {
             Route::get("", SocialLoginHandler::class)->name("social.login");
             Route::get("redirect", SocialRedirectHandler::class)->name("social.redirect");
         });
     });
+    
+    Route::get("logout", UserLogoutHandler::class)->name("auth.logout");
 });
-
-
 
 Route::prefix("pastes")->group(function () {
     Route::get("create", CreatePasteHandler::class)->name("paste.create");
