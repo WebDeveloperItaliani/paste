@@ -15,6 +15,14 @@ $factory->define(\Wdi\Entities\Paste::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->state(\Wdi\Entities\Paste::class, "with-user", function () {
+    return [
+        "user_id" => function () {
+            return factory(\Wdi\Entities\User::class)->create();
+        },
+    ];
+});
+
 $factory->state(\Wdi\Entities\Paste::class, "forked", function () {
     return [
         "paste_id" => function () {

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Wdi\Entities\Language;
 use Wdi\Entities\Paste;
+use Wdi\Entities\User;
 
 /**
  * Class PasteTest
@@ -45,7 +46,7 @@ final class PasteTest extends TestCase
     public function it_may_have_a_password_for_editing_purpose()
     {
         $paste = factory(Paste::class)->states("with-password")->make([
-            "password" => "foobar"
+            "password" => "foobar",
         ]);
         
         $this->assertNotNull($paste->password);
@@ -56,7 +57,7 @@ final class PasteTest extends TestCase
     public function it_may_have_a_null_password()
     {
         $paste = factory(Paste::class)->make([
-            "password" => null
+            "password" => null,
         ]);
         
         $this->assertNull($paste->password);
@@ -79,6 +80,24 @@ final class PasteTest extends TestCase
         ]);
         
         $this->assertTrue($paste->hasForks());
+    }
+    
+    /** @test */
+    public function it_can_tell_if_it_has_an_user_related()
+    {
+        $paste = factory(Paste::class)->states("with-user")->create();
+        $this->assertTrue($paste->hasUser());
+        
+        $paste = factory(Paste::class)->create();
+        $this->assertFalse($paste->hasUser());
+    }
+    
+    /** @test */
+    public function it_may_belongs_to_an_user()
+    {
+        $paste = factory(Paste::class)->states("with-user")->create();
+        
+        $this->assertInstanceOf(User::class, $paste->user);
     }
     
     /** @test */
