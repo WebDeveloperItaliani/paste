@@ -43,4 +43,14 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+    
+    
+    /** {@inheritdoc} */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        flash()->error("Non sei autenticato");
+        
+        return redirect()->guest(route("home"));
+    }
+    
 }
